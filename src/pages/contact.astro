@@ -11,7 +11,19 @@ import { siteConfig } from "../data/site-config";
 			and I'll get back to you within a day or two.
 		</p>
 
-		<form id="contact-form" class="mt-10 space-y-5">
+		<form
+			id="contact-form"
+			name="contact"
+			method="POST"
+			data-netlify="true"
+			netlify-honeypot="bot-field"
+			class="mt-10 space-y-5"
+		>
+			<input type="hidden" name="form-name" value="contact" />
+			<p class="hidden">
+				<label>Don't fill this out if you're human: <input name="bot-field" /></label>
+			</p>
+
 			<div class="grid gap-5 sm:grid-cols-2">
 				<div>
 					<label for="name" class="block text-sm font-semibold text-ink">Name</label>
@@ -53,16 +65,17 @@ import { siteConfig } from "../data/site-config";
 					class="mt-1.5 w-full rounded-md border border-ink/20 bg-paper px-3.5 py-2.5 text-ink placeholder:text-ink/40 focus:border-primary focus:outline-none"
 				></textarea>
 			</div>
+
 			<button
+				id="contact-submit"
 				type="submit"
-				class="inline-block rounded-md bg-primary px-6 py-3 text-sm font-semibold text-paper transition-colors hover:bg-primary/90"
+				class="inline-block rounded-md bg-primary px-6 py-3 text-sm font-semibold text-paper transition-colors hover:bg-primary/90 disabled:opacity-60"
 			>
 				Send message
 			</button>
-			<p class="text-xs text-ink/50">
-				This opens a message in your email app addressed to {siteConfig.email}, prefilled with what you enter above.
-			</p>
 		</form>
+
+		<p id="contact-status" class="mt-5 hidden text-sm" role="status"></p>
 
 		<div class="mt-14 border-t border-ink/10 pt-8">
 			<p class="text-sm font-semibold text-ink">Prefer to reach out directly?</p>
@@ -76,20 +89,52 @@ import { siteConfig } from "../data/site-config";
 	</section>
 </Layout>
 
-<script define:vars={{ email: siteConfig.email }}>
-	const form = document.getElementById("contact-form");
+<script>
+	const form = document.getElementById("contact-form") as HTMLFormElement | null;
+	const submitButton = document.getElementById("contact-submit") as HTMLButtonElement | null;
+	const status = document.getElementById("contact-status");
 
-	form?.addEventListener("submit", (event) => {
+	function encode(data: Record<string, string>) {
+		return Object.entries(data)
+			.map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
+			.join("&");
+	}
+
+	function showStatus(message: string, isError = false) {
+		if (!status) return;
+		status.textContent = message;
+		status.classList.remove("hidden", "text-ink/60", "text-red-700");
+		status.classList.add(isError ? "text-red-700" : "text-ink/60");
+	}
+
+	form?.addEventListener("submit", async (event) => {
 		event.preventDefault();
-		const data = new FormData(form);
-		const name = data.get("name") ?? "";
-		const business = data.get("business") ?? "";
-		const senderEmail = data.get("email") ?? "";
-		const message = data.get("message") ?? "";
+		if (!form || !submitButton) return;
 
-		const subject = `New inquiry from ${name}${business ? ` (${business})` : ""}`;
-		const body = `Name: ${name}\nBusiness: ${business}\nEmail: ${senderEmail}\n\n${message}`;
+		const formData = new FormData(form);
+		const payload: Record<string, string> = {};
+		formData.forEach((value, key) => {
+			payload[key] = String(value);
+		});
 
-		window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+		submitButton.disabled = true;
+		showStatus("Sending...");
+
+		try {
+			const response = await fetch("/", {
+				method: "POST",
+				headers: { "Content-Type": "application/x-www-form-urlencoded" },
+				body: encode(payload),
+			});
+
+			if (!response.ok) throw new Error(`Request failed: ${response.status}`);
+
+			form.reset();
+			form.hidden = true;
+			showStatus("Thanks — your message is sent. I'll get back to you within a day or two.");
+		} catch {
+			submitButton.disabled = false;
+			showStatus("Something went wrong sending that. Please email me directly instead.", true);
+		}
 	});
 </script>
