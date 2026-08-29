@@ -1,0 +1,23 @@
+---
+import { siteConfig } from "../data/site-config";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-ink text-paper/90">
+	<div class="mx-auto flex max-w-6xl flex-col gap-6 px-6 py-10 sm:flex-row sm:items-center sm:justify-between">
+		<div>
+			<p class="font-head text-lg font-semibold text-paper">{siteConfig.name}</p>
+			<p class="mt-1 text-sm text-paper/70">{siteConfig.location} · {siteConfig.region}</p>
+		</div>
+
+		<div class="flex flex-wrap gap-x-6 gap-y-2 text-sm">
+			<a href={`mailto:${siteConfig.email}`} class="hover:text-accent">{siteConfig.email}</a>
+			<a href={siteConfig.linkedin} target="_blank" rel="noopener noreferrer" class="hover:text-accent">LinkedIn</a>
+			<a href={siteConfig.github} target="_blank" rel="noopener noreferrer" class="hover:text-accent">GitHub</a>
+		</div>
+	</div>
+	<div class="border-t border-paper/10 px-6 py-4 text-center text-xs text-paper/50">
+		&copy; {year} {siteConfig.name}. All rights reserved.
+	</div>
+</footer>

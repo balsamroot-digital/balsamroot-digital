@@ -1,0 +1,73 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ServiceCard from "../components/ServiceCard.astro";
+import CTASection from "../components/CTASection.astro";
+import { services, maintenanceTiers, addOns } from "../data/services";
+---
+
+<Layout title="Services" description="New builds, redesigns, maintenance plans, and SEO for Columbia Gorge wineries and breweries.">
+	<section class="mx-auto max-w-6xl px-6 pt-16 pb-12">
+		<h1 class="font-head text-4xl font-semibold text-ink sm:text-5xl">Services & pricing</h1>
+		<p class="mt-4 max-w-2xl text-lg leading-relaxed text-ink/75">
+			Straightforward offerings so you know what you're getting before you email me.
+			Every project gets scoped and quoted up front — these are starting points, not
+			hidden-fee teasers.
+		</p>
+	</section>
+
+	<section class="mx-auto max-w-6xl px-6 pb-20">
+		<div class="grid gap-6 sm:grid-cols-2">
+			{services.map((service) => <ServiceCard service={service} />)}
+		</div>
+	</section>
+
+	<section class="border-t border-ink/10 bg-primary/5">
+		<div class="mx-auto max-w-6xl px-6 py-20">
+			<h2 class="font-head text-3xl font-semibold text-ink">Maintenance plans</h2>
+			<p class="mt-3 max-w-2xl text-ink/75">
+				This is the option most clients land on after launch — hosting, security, and
+				small updates handled monthly so you never have to think about the technical
+				side again.
+			</p>
+			<div class="mt-10 grid gap-6 sm:grid-cols-3">
+				{
+					maintenanceTiers.map((tier) => (
+						<div class="flex flex-col rounded-lg border border-ink/10 bg-paper p-7">
+							<h3 class="font-head text-xl font-semibold text-ink">{tier.name}</h3>
+							<p class="mt-1 text-2xl font-semibold text-accent">{tier.priceLabel}</p>
+							<p class="mt-3 text-sm leading-relaxed text-ink/70">{tier.description}</p>
+							<ul class="mt-5 space-y-2 text-sm text-ink/65">
+								{tier.features.map((feature) => (
+									<li class="flex gap-2">
+										<span class="text-primary">·</span>
+										{feature}
+									</li>
+								))}
+							</ul>
+						</div>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<section class="mx-auto max-w-6xl px-6 py-20">
+		<h2 class="font-head text-3xl font-semibold text-ink">Add-ons</h2>
+		<p class="mt-3 max-w-2xl text-ink/75">Available case-by-case, priced with your project.</p>
+		<ul class="mt-8 grid gap-3 sm:grid-cols-2">
+			{
+				addOns.map((item) => (
+					<li class="flex items-center gap-3 rounded-lg border border-ink/10 bg-paper px-5 py-4 text-sm text-ink/80">
+						<span class="text-primary">·</span>
+						{item}
+					</li>
+				))
+			}
+		</ul>
+	</section>
+
+	<CTASection
+		heading="Not sure which service fits?"
+		body="Send me a quick note about your site and I'll point you at the right option."
+	/>
+</Layout>

@@ -1,0 +1,27 @@
+---
+import type { Service } from "../data/services";
+
+type Props = {
+	service: Service;
+};
+
+const { service } = Astro.props;
+---
+
+<div class="rounded-lg border border-ink/10 bg-paper p-7">
+	<h3 class="font-head text-xl font-semibold text-ink">{service.name}</h3>
+	<p class="mt-2 text-sm leading-relaxed text-ink/70">{service.summary}</p>
+	<p class="mt-4 text-sm font-semibold text-accent">{service.priceLabel}</p>
+	{
+		service.details && (
+			<ul class="mt-4 space-y-1.5 text-sm text-ink/65">
+				{service.details.map((detail) => (
+					<li class="flex gap-2">
+						<span class="text-primary">·</span>
+						{detail}
+					</li>
+				))}
+			</ul>
+		)
+	}
+</div>

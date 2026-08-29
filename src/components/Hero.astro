@@ -1,0 +1,24 @@
+---
+import { siteConfig } from "../data/site-config";
+import Button from "./Button.astro";
+---
+
+<section class="mx-auto max-w-6xl px-6 pt-16 pb-20 sm:pt-24 sm:pb-28">
+	<div class="max-w-2xl">
+		<p class="mb-4 text-sm font-semibold uppercase tracking-wide text-accent">
+			{siteConfig.region} Web Developer
+		</p>
+		<h1 class="font-head text-4xl font-semibold leading-tight text-ink sm:text-5xl">
+			{siteConfig.tagline}
+		</h1>
+		<p class="mt-6 max-w-xl text-lg leading-relaxed text-ink/75">
+			No agency markup, no DIY-builder compromises. A fast, clean site that makes your
+			tasting room easy to find — and easy to trust — before a single visitor walks in
+			the door.
+		</p>
+		<div class="mt-8 flex flex-wrap gap-4">
+			<Button href="/portfolio" variant="primary">See the work</Button>
+			<Button href="/contact" variant="outline">Get in touch</Button>
+		</div>
+	</div>
+</section>

@@ -1,1 +1,21 @@
 @import "tailwindcss";
+
+@import "@fontsource-variable/newsreader/standard.css";
+@import "@fontsource-variable/work-sans/wght.css";
+
+@theme {
+	--color-paper: #faf7f0;
+	--color-ink: #2a2b28;
+	--color-primary: #4a5a4e;
+	--color-accent: #c87f3a;
+	--color-muted: #8b8578;
+
+	--font-head: "Newsreader Variable", serif;
+	--font-body: "Work Sans Variable", sans-serif;
+}
+
+body {
+	background-color: var(--color-paper);
+	color: var(--color-ink);
+	font-family: var(--font-body);
+}

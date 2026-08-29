@@ -1,0 +1,27 @@
+---
+import Button from "./Button.astro";
+
+type Props = {
+	heading: string;
+	body?: string;
+	buttonLabel?: string;
+	buttonHref?: string;
+};
+
+const {
+	heading,
+	body,
+	buttonLabel = "Get in touch",
+	buttonHref = "/contact",
+} = Astro.props;
+---
+
+<section class="bg-ink">
+	<div class="mx-auto max-w-6xl px-6 py-16 text-center">
+		<h2 class="font-head text-3xl font-semibold text-paper">{heading}</h2>
+		{body && <p class="mx-auto mt-3 max-w-xl text-paper/70">{body}</p>}
+		<div class="mt-8">
+			<Button href={buttonHref} variant="accent">{buttonLabel}</Button>
+		</div>
+	</div>
+</section>

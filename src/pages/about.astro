@@ -1,0 +1,42 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CTASection from "../components/CTASection.astro";
+import { siteConfig } from "../data/site-config";
+---
+
+<Layout title="About" description="Colter Garrison, a web developer based in Hood River, OR, building sites for Columbia Gorge businesses.">
+	<section class="mx-auto max-w-3xl px-6 py-16 sm:py-24">
+		<h1 class="font-head text-4xl font-semibold text-ink sm:text-5xl">About</h1>
+
+		<div class="mt-8 space-y-5 text-lg leading-relaxed text-ink/80">
+			<p>
+				I'm Colter, a web developer based in {siteConfig.location}. I build and maintain
+				websites for wineries, breweries, and other hospitality businesses across the
+				Gorge.
+			</p>
+			<p>
+				<!-- TODO: replace with real background — years building sites, what you did before this, why you started this business. -->
+				I live here, so I'm not guessing at what makes a Gorge tasting room different
+				from a chain restaurant down in Portland — I've been to yours, or one just like
+				it. That's the whole pitch: someone local, who answers the phone, building
+				something that actually fits your business instead of a generic template with
+				your logo dropped in.
+			</p>
+			<p>
+				If you want to see the work before you reach out, the <a href="/portfolio" class="font-semibold text-accent hover:text-accent/80">portfolio</a>
+				page has live sites you can click through right now.
+			</p>
+		</div>
+
+		<div class="mt-10 flex flex-wrap gap-4 text-sm font-semibold">
+			<a href={siteConfig.linkedin} target="_blank" rel="noopener noreferrer" class="text-accent hover:text-accent/80">
+				LinkedIn →
+			</a>
+			<a href={siteConfig.github} target="_blank" rel="noopener noreferrer" class="text-accent hover:text-accent/80">
+				GitHub →
+			</a>
+		</div>
+	</section>
+
+	<CTASection heading="Ready to talk about your site?" />
+</Layout>

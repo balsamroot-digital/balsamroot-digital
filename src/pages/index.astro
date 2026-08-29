@@ -1,17 +1,43 @@
 ---
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import ServiceCard from "../components/ServiceCard.astro";
+import PortfolioCard from "../components/PortfolioCard.astro";
+import TrustSection from "../components/TrustSection.astro";
+import CTASection from "../components/CTASection.astro";
+import { services } from "../data/services";
+import { portfolio } from "../data/portfolio";
 
+const featuredServices = services.slice(0, 4);
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Home">
+	<Hero />
+
+	<section class="mx-auto max-w-6xl px-6 pb-20">
+		<div class="mb-8 flex items-end justify-between">
+			<h2 class="font-head text-2xl font-semibold text-ink sm:text-3xl">What I do</h2>
+			<a href="/services" class="text-sm font-semibold text-accent hover:text-accent/80">All services →</a>
+		</div>
+		<div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+			{featuredServices.map((service) => <ServiceCard service={service} />)}
+		</div>
+	</section>
+
+	<TrustSection />
+
+	<section class="mx-auto max-w-6xl px-6 py-20">
+		<div class="mb-8 flex items-end justify-between">
+			<h2 class="font-head text-2xl font-semibold text-ink sm:text-3xl">Recent work</h2>
+			<a href="/portfolio" class="text-sm font-semibold text-accent hover:text-accent/80">Full portfolio →</a>
+		</div>
+		<div class="grid gap-6 sm:grid-cols-2">
+			{portfolio.map((entry) => <PortfolioCard entry={entry} />)}
+		</div>
+	</section>
+
+	<CTASection
+		heading="Have a site that needs a rebuild — or no site at all?"
+		body="Tell me about your business and I'll tell you honestly what it needs."
+	/>
+</Layout>

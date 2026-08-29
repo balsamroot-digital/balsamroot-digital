@@ -1,0 +1,27 @@
+---
+import Layout from "../layouts/Layout.astro";
+import PortfolioCard from "../components/PortfolioCard.astro";
+import CTASection from "../components/CTASection.astro";
+import { portfolio } from "../data/portfolio";
+---
+
+<Layout title="Portfolio" description="Live sites built and maintained for Columbia Gorge wineries and breweries.">
+	<section class="mx-auto max-w-6xl px-6 pt-16 pb-12">
+		<h1 class="font-head text-4xl font-semibold text-ink sm:text-5xl">Portfolio</h1>
+		<p class="mt-4 max-w-2xl text-lg leading-relaxed text-ink/75">
+			Real, live sites for real Gorge businesses — not mockups. Click through and see
+			for yourself.
+		</p>
+	</section>
+
+	<section class="mx-auto max-w-6xl px-6 pb-20">
+		<div class="grid gap-6 sm:grid-cols-2">
+			{portfolio.map((entry) => <PortfolioCard entry={entry} />)}
+		</div>
+	</section>
+
+	<CTASection
+		heading="Want to be next?"
+		body="If you're a Gorge winery or brewery ready for a site that actually works for you, let's talk."
+	/>
+</Layout>
