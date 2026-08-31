@@ -1,5 +1,7 @@
 ---
+import { Image } from "astro:assets";
 import Button from "./Button.astro";
+import ctaImage from "../assets/elena-kuchko-hgLk4h8AkJY-unsplash.jpg";
 
 type Props = {
 	heading: string;
@@ -16,7 +18,16 @@ const {
 } = Astro.props;
 ---
 
-<section class="bg-ink">
+<section class="relative isolate overflow-hidden bg-ink">
+	<Image
+		src={ctaImage}
+		alt=""
+		widths={[800, 1400, 2000]}
+		sizes="100vw"
+		class="absolute inset-0 -z-10 h-full w-full object-cover"
+	/>
+	<div class="absolute inset-0 -z-10 bg-ink/85"></div>
+
 	<div class="mx-auto max-w-6xl px-6 py-16 text-center">
 		<h2 class="font-head text-3xl font-semibold text-paper">{heading}</h2>
 		{body && <p class="mx-auto mt-3 max-w-xl text-paper/70">{body}</p>}
@@ -24,4 +35,13 @@ const {
 			<Button href={buttonHref} variant="accent">{buttonLabel}</Button>
 		</div>
 	</div>
+
+	<p class="absolute bottom-2 right-4 text-xs text-paper/30">
+		Photo by <a
+			href="https://unsplash.com/photos/green-trees-on-mountain-during-daytime-hgLk4h8AkJY"
+			target="_blank"
+			rel="noopener noreferrer"
+			class="underline-offset-2 hover:text-paper/60 hover:underline">Elena Kuchko</a
+		>
+	</p>
 </section>

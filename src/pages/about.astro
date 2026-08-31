@@ -1,20 +1,29 @@
 ---
+import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import CTASection from "../components/CTASection.astro";
 import { siteConfig } from "../data/site-config";
+import selfie from "../assets/selfie.jpeg";
 ---
 
 <Layout title="About" description="Colter Garrison, a web developer based in Hood River, OR, building sites for Columbia Gorge businesses.">
 	<section class="mx-auto max-w-3xl px-6 py-16 sm:py-24">
 		<h1 class="font-head text-4xl font-semibold text-ink sm:text-5xl">About</h1>
 
-		<div class="mt-8 space-y-5 text-lg leading-relaxed text-ink/80">
+		<div class="mt-8 text-lg leading-relaxed text-ink/80">
+			<Image
+				src={selfie}
+				alt="Colter Garrison holding his white dog Ožujsko under string lights"
+				widths={[128, 176, 256, 352]}
+				sizes="(min-width: 640px) 11rem, 8rem"
+				class="float-right mb-3 ml-4 h-32 w-32 rounded-xl object-cover sm:ml-6 sm:h-44 sm:w-44"
+			/>
 			<p>
 				I'm Colter, a web developer based in {siteConfig.location}. I build and maintain
 				websites for wineries, breweries, and other hospitality businesses across the
 				Gorge.
 			</p>
-			<p>
+			<p class="mt-5">
 				I've spent the last decade in and around the Gorge. Before web development, I worked as an
 				EMT and later as a nurse, which meant a lot of time showing up for people on
 				their hardest days and learning to communicate clearly when it really mattered.
@@ -23,12 +32,12 @@ import { siteConfig } from "../data/site-config";
 				in there I found my way into front-end development, and I've been building
 				websites professionally ever since.
 			</p>
-			<p>
+			<p class="mt-5">
 				I bring all of that here. I know this area, I know what it's like to work in
 				hospitality, and I care about getting the details right, so your site ends up
 				looking like your business, not a template with your logo dropped in.
 			</p>
-			<p>
+			<p class="mt-5">
 				If you want to see the work before you reach out, the <a href="/portfolio" class="font-semibold text-accent hover:text-accent/80">portfolio</a> page has live sites you can click through right now.
 			</p>
 		</div>

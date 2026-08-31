@@ -1,18 +1,44 @@
 ---
+import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import ServiceCard from "../components/ServiceCard.astro";
 import CTASection from "../components/CTASection.astro";
 import { services, maintenanceTiers, addOns } from "../data/services";
+import headerImage from "../assets/brandon-desjarlais-8ZytzmKizII-unsplash.jpg";
 ---
 
 <Layout title="Services" description="New builds, redesigns, maintenance plans, and SEO for Columbia Gorge wineries and breweries.">
 	<section class="mx-auto max-w-6xl px-6 pt-16 pb-12">
-		<h1 class="font-head text-4xl font-semibold text-ink sm:text-5xl">Services & pricing</h1>
-		<p class="mt-4 max-w-2xl text-lg leading-relaxed text-ink/75">
-			Straightforward offerings so you know what you're getting before you email me.
-			Every project gets scoped and quoted up front — these are starting points, not
-			hidden-fee teasers.
-		</p>
+		<div class="lg:grid lg:grid-cols-[1.4fr_1fr] lg:items-center lg:gap-14">
+			<div>
+				<h1 class="font-head text-4xl font-semibold text-ink sm:text-5xl">Services & pricing</h1>
+				<p class="mt-4 max-w-2xl text-lg leading-relaxed text-ink/75">
+					Straightforward offerings so you know what you're getting before you email me.
+					Every project gets scoped and quoted up front — these are starting points, not
+					hidden-fee teasers.
+				</p>
+			</div>
+
+			<div class="mt-10 lg:mt-0">
+				<div class="overflow-hidden rounded-xl">
+					<Image
+						src={headerImage}
+						alt="Morning light over the Columbia River Gorge"
+						widths={[440, 720, 1080]}
+						sizes="(min-width: 1024px) 30vw, 100vw"
+						class="aspect-[16/10] w-full object-cover lg:aspect-auto lg:h-[24rem]"
+					/>
+				</div>
+				<p class="mt-2 text-xs text-ink/40">
+					Photo by <a
+						href="https://unsplash.com/photos/body-of-water-between-trees-during-daytime-8ZytzmKizII"
+						target="_blank"
+						rel="noopener noreferrer"
+						class="underline-offset-2 hover:text-ink/70 hover:underline">Brandon Desjarlais</a
+					>
+				</p>
+			</div>
+		</div>
 	</section>
 
 	<section class="mx-auto max-w-6xl px-6 pb-20">
