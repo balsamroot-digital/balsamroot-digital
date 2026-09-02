@@ -4,11 +4,11 @@
 @import "@fontsource-variable/work-sans/wght.css";
 
 @theme {
-	--color-paper: #faf7f0;
-	--color-ink: #2a2b28;
-	--color-primary: #4a5a4e;
-	--color-accent: #c87f3a;
-	--color-muted: #8b8578;
+	--color-paper: #f2f1e8;
+	--color-ink: #262a24;
+	--color-primary: #3f5344;
+	--color-accent: #9c5b1f;
+	--color-muted: #6b6a5e;
 
 	--font-head: "Newsreader", serif;
 	--font-body: "Work Sans Variable", sans-serif;

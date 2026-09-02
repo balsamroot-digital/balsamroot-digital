@@ -5,7 +5,7 @@ export const siteConfig = {
 	tagline: "Websites for Gorge wineries and breweries, built and maintained by someone local.",
 	description:
 		"Website builds, redesigns, and ongoing maintenance for wineries, breweries, and hospitality businesses in the Columbia Gorge.",
-	email: "hello@balsamrootdigital.com",
+	email: "colter@balsamrootdigital.com",
 	location: "Hood River, OR",
 	region: "Columbia Gorge",
 	linkedin: "https://www.linkedin.com/in/colter-garrison/",

@@ -12,12 +12,12 @@ const year = new Date().getFullYear();
 		</div>
 
 		<div class="flex flex-wrap gap-x-6 gap-y-2 text-sm">
-			<a href={`mailto:${siteConfig.email}`} class="hover:text-accent">{siteConfig.email}</a>
-			<a href={siteConfig.linkedin} target="_blank" rel="noopener noreferrer" class="hover:text-accent">LinkedIn</a>
-			<a href={siteConfig.github} target="_blank" rel="noopener noreferrer" class="hover:text-accent">GitHub</a>
+			<a href={`mailto:${siteConfig.email}`} class="hover:text-paper">{siteConfig.email}</a>
+			<a href={siteConfig.linkedin} target="_blank" rel="noopener noreferrer" class="hover:text-paper">LinkedIn</a>
+			<a href={siteConfig.github} target="_blank" rel="noopener noreferrer" class="hover:text-paper">GitHub</a>
 		</div>
 	</div>
-	<div class="border-t border-paper/10 px-6 py-4 text-center text-xs text-paper/50">
+	<div class="border-t border-paper/10 px-6 py-4 text-center text-xs text-paper/60">
 		&copy; {year} {siteConfig.name}. All rights reserved.
 	</div>
 </footer>
