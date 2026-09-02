@@ -31,6 +31,7 @@ import { siteConfig } from "../data/site-config";
 						id="name"
 						name="name"
 						type="text"
+						maxlength="100"
 						required
 						class="mt-1.5 w-full rounded-md border border-ink/20 bg-paper px-3.5 py-2.5 text-ink placeholder:text-ink/40 focus:border-primary focus:outline-none"
 					/>
@@ -41,6 +42,7 @@ import { siteConfig } from "../data/site-config";
 						id="business"
 						name="business"
 						type="text"
+						maxlength="100"
 						class="mt-1.5 w-full rounded-md border border-ink/20 bg-paper px-3.5 py-2.5 text-ink placeholder:text-ink/40 focus:border-primary focus:outline-none"
 					/>
 				</div>
@@ -51,6 +53,7 @@ import { siteConfig } from "../data/site-config";
 					id="email"
 					name="email"
 					type="email"
+					maxlength="254"
 					required
 					class="mt-1.5 w-full rounded-md border border-ink/20 bg-paper px-3.5 py-2.5 text-ink placeholder:text-ink/40 focus:border-primary focus:outline-none"
 				/>
@@ -61,9 +64,12 @@ import { siteConfig } from "../data/site-config";
 					id="message"
 					name="message"
 					rows="5"
+					maxlength="5000"
 					required
 					class="mt-1.5 w-full rounded-md border border-ink/20 bg-paper px-3.5 py-2.5 text-ink placeholder:text-ink/40 focus:border-primary focus:outline-none"
 				></textarea>
+				<p id="message-counter" class="mt-1.5 hidden text-right text-xs text-ink/60" aria-hidden="true"></p>
+				<p id="message-counter-status" class="sr-only" role="status" aria-live="polite"></p>
 			</div>
 
 			<button
@@ -107,6 +113,45 @@ import { siteConfig } from "../data/site-config";
 		status.classList.add(isError ? "text-red-700" : "text-ink/60");
 	}
 
+	const messageField = document.getElementById("message") as HTMLTextAreaElement | null;
+	const counter = document.getElementById("message-counter");
+	const counterStatus = document.getElementById("message-counter-status");
+	const COUNTER_VISIBLE_FROM = 4500;
+
+	// Only re-announce on 100-character milestones so screen readers aren't
+	// interrupted on every keystroke.
+	let lastAnnounced = -1;
+
+	function updateCounter() {
+		if (!messageField || !counter) return;
+
+		const remaining = messageField.maxLength - messageField.value.length;
+		const show = messageField.value.length > COUNTER_VISIBLE_FROM;
+
+		counter.classList.toggle("hidden", !show);
+		if (!show) {
+			lastAnnounced = -1;
+			return;
+		}
+
+		counter.textContent =
+			remaining === 0
+				? "You've reached the character limit \u2014 email me directly if you need more room."
+				: `${remaining} characters left`;
+		counter.classList.toggle("text-red-700", remaining === 0);
+		counter.classList.toggle("text-ink/60", remaining !== 0);
+
+		const milestone = remaining === 0 ? 0 : Math.ceil(remaining / 100) * 100;
+		if (counterStatus && milestone !== lastAnnounced) {
+			lastAnnounced = milestone;
+			counterStatus.textContent = counter.textContent;
+		}
+	}
+
+	messageField?.addEventListener("input", updateCounter);
+	// Run once in case the browser restored a long draft on back-navigation.
+	updateCounter();
+
 	form?.addEventListener("submit", async (event) => {
 		event.preventDefault();
 		if (!form || !submitButton) return;
@@ -130,6 +175,7 @@ import { siteConfig } from "../data/site-config";
 			if (!response.ok) throw new Error(`Request failed: ${response.status}`);
 
 			form.reset();
+			updateCounter();
 			form.hidden = true;
 			showStatus("Thanks — your message is sent. I'll get back to you within a day or two.");
 		} catch {
