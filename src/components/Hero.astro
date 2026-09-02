@@ -2,7 +2,7 @@
 import { Image } from "astro:assets";
 import { siteConfig } from "../data/site-config";
 import Button from "./Button.astro";
-import heroImage from "../assets/pexels-taylor-1338777-14810188.jpg";
+import heroImage from "../assets/pexels-webbshow-2406396.jpg";
 ---
 
 <section class="mx-auto max-w-6xl px-6 pt-16 pb-20 sm:pt-24 sm:pb-28">
@@ -29,19 +29,20 @@ import heroImage from "../assets/pexels-taylor-1338777-14810188.jpg";
 			<div class="overflow-hidden rounded-xl">
 				<Image
 					src={heroImage}
-					alt="Mount Hood catching the last light above the treeline"
-					widths={[480, 800, 1200]}
-					sizes="(min-width: 1024px) 42vw, 100vw"
+					alt="A field of balsamroot flowers on the Mosier hills overlooking the Columbia River"
+					widths={[500, 800, 1280]}
+					sizes="(min-width: 1152px) 500px, (min-width: 1024px) 42vw, 100vw"
 					loading="eager"
-					class="aspect-[16/10] w-full object-cover object-top lg:aspect-[4/5]"
+					fetchpriority="high"
+					class="aspect-[16/10] w-full object-cover object-center lg:aspect-[4/3]"
 				/>
 			</div>
 			<p class="mt-2 text-xs text-ink/40">
 				Photo by <a
-					href="https://www.pexels.com/photo/snowcapped-mountain-seen-from-road-14810188/"
+					href="https://www.pexels.com/photo/photo-of-person-standing-at-flower-field-2406396/"
 					target="_blank"
 					rel="noopener noreferrer"
-					class="underline-offset-2 hover:text-ink/70 hover:underline">Taylor Koerber</a
+					class="underline-offset-2 hover:text-ink/70 hover:underline">Avery Nielsen-Webb</a
 				>
 			</p>
 		</div>
