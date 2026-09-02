@@ -1,6 +1,6 @@
 # Balsamroot Digital
 
-Marketing/portfolio site for Balsamroot Digital — a solo web developer business based in Hood River, OR, building and maintaining sites for wineries, breweries, and similar hospitality businesses in the Columbia Gorge.
+Marketing/portfolio site for Balsamroot Digital (a DBA of Kettle Collective LLC) — a solo web developer business based in Hood River, OR, building and maintaining sites for wineries, breweries, and similar hospitality businesses in the Columbia Gorge.
 
 See [PROJECT-BRIEF.md](./PROJECT-BRIEF.md) for the source of truth on content, sitemap, and pricing. See [CLAUDE.md](./CLAUDE.md) for project conventions.
 
