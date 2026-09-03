@@ -1,0 +1,18 @@
+# External link checking — https://lychee.cli.rs/usage/config/
+
+exclude = [
+  # LinkedIn returns HTTP 999 to any non-browser client, so checking it
+  # tells us nothing. Verify this one by hand if the profile URL changes.
+  "^https://www\\.linkedin\\.com",
+]
+
+# Format-check email addresses; don't try to deliver to them.
+exclude_mail = true
+
+# Be a polite guest — these are other people's servers, including a client's.
+max_concurrency = 4
+timeout = 20
+max_retries = 3
+retry_wait_time = 5
+
+user_agent = "Mozilla/5.0 (compatible; BalsamrootLinkCheck/1.0; +https://balsamrootdigital.com)"

@@ -9,6 +9,10 @@ jobs:
         name: Audit performance & SEO
         runs-on: ubuntu-latest
         timeout-minutes: 15
+        strategy:
+            fail-fast: false
+            matrix:
+                preset: [mobile, desktop]
 
         steps:
             - uses: actions/checkout@v7
@@ -23,9 +27,23 @@ jobs:
             - name: Build site
               run: npm run build
 
-            - name: Run Lighthouse
+            # Mobile is Lighthouse's default — no preset is set at all.
+            - name: Run Lighthouse (mobile)
+              if: matrix.preset == 'mobile'
               uses: treosh/lighthouse-ci-action@v12
               with:
                   configPath: ./lighthouserc.json
                   uploadArtifacts: true
+                  artifactName: lighthouse-results-mobile
                   temporaryPublicStorage: true
+
+            - name: Run Lighthouse (desktop)
+              if: matrix.preset == 'desktop'
+              uses: treosh/lighthouse-ci-action@v12
+              with:
+                  configPath: ./lighthouserc.json
+                  uploadArtifacts: true
+                  artifactName: lighthouse-results-desktop
+                  temporaryPublicStorage: true
+              env:
+                  LHCI_COLLECT__SETTINGS__PRESET: desktop
