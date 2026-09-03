@@ -17,7 +17,7 @@ const featuredServices = services.slice(0, 4);
 	<section class="mx-auto max-w-6xl px-6 pb-20">
 		<div class="mb-8 flex items-end justify-between">
 			<h2 class="font-head text-2xl font-semibold text-ink sm:text-3xl">What I do</h2>
-			<a href="/services" class="text-sm font-semibold text-accent hover:text-accent/80">All services →</a>
+			<a href="/services" class="text-sm font-semibold text-accent hover:underline">All services →</a>
 		</div>
 		<div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
 			{featuredServices.map((service) => <ServiceCard service={service} />)}
@@ -29,7 +29,7 @@ const featuredServices = services.slice(0, 4);
 	<section class="mx-auto max-w-6xl px-6 py-20">
 		<div class="mb-8 flex items-end justify-between">
 			<h2 class="font-head text-2xl font-semibold text-ink sm:text-3xl">Recent work</h2>
-			<a href="/portfolio" class="text-sm font-semibold text-accent hover:text-accent/80">Full portfolio →</a>
+			<a href="/portfolio" class="text-sm font-semibold text-accent hover:underline">Full portfolio →</a>
 		</div>
 		<div class="grid gap-6 sm:grid-cols-2">
 			{portfolio.map((entry) => <PortfolioCard entry={entry} />)}
