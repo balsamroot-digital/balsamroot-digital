@@ -1,0 +1,26 @@
+version: 2
+
+updates:
+    - package-ecosystem: npm
+      directory: '/'
+      schedule:
+          interval: weekly
+          day: monday
+      open-pull-requests-limit: 5
+      labels:
+          - dependencies
+      groups:
+          # Batch low-risk updates into one PR instead of five separate ones
+          minor-and-patch:
+              update-types:
+                  - minor
+                  - patch
+
+    # The actions used inside .github/workflows
+    - package-ecosystem: github-actions
+      directory: '/'
+      schedule:
+          interval: monthly
+      labels:
+          - dependencies
+          - ci
