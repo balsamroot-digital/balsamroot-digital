@@ -3,9 +3,14 @@ import type { PortfolioEntry } from "../data/portfolio";
 
 type Props = {
 	entry: PortfolioEntry;
+	/** Heading level for the entry name. Defaults to 3, for use under an h2
+	 * section heading. The portfolio page passes 2, where cards sit directly
+	 * under the h1. */
+	headingLevel?: 2 | 3;
 };
 
-const { entry } = Astro.props;
+const { entry, headingLevel = 3 } = Astro.props;
+const Heading = `h${headingLevel}` as "h2" | "h3";
 ---
 
 <div class="rounded-lg border border-ink/10 bg-paper p-7">
@@ -16,7 +21,7 @@ const { entry } = Astro.props;
 			))
 		}
 	</div>
-	<h3 class="mt-3 font-head text-2xl font-semibold text-ink">{entry.name}</h3>
+	<Heading class="mt-3 font-head text-2xl font-semibold text-ink">{entry.name}</Heading>
 	<p class="mt-2 text-sm leading-relaxed text-ink/70">{entry.description}</p>
 	<a
 		href={entry.url}

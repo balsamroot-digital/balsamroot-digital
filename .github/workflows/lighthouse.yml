@@ -9,6 +9,10 @@ jobs:
         name: Audit performance & SEO
         runs-on: ubuntu-latest
         timeout-minutes: 15
+        strategy:
+            fail-fast: false
+            matrix:
+                preset: [mobile, desktop]
 
         steps:
             - uses: actions/checkout@v7
@@ -28,4 +32,7 @@ jobs:
               with:
                   configPath: ./lighthouserc.json
                   uploadArtifacts: true
+                  artifactName: lighthouse-results-${{ matrix.preset }}
                   temporaryPublicStorage: true
+              env:
+                  LHCI_COLLECT__SETTINGS__PRESET: ${{ matrix.preset }}
