@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import type { PortfolioEntry } from "../data/portfolio";
 
 type Props = {
@@ -11,24 +12,228 @@ type Props = {
 
 const { entry, headingLevel = 3 } = Astro.props;
 const Heading = `h${headingLevel}` as "h2" | "h3";
+
+const study = entry.caseStudy;
+const pages = study?.pages ?? [];
+const cover = pages[0];
+const hasTabs = pages.length > 1;
+
+const shotWidths = [420, 720, 1040];
+const shotSizes = "(min-width: 640px) 45vw, 100vw";
+const shotClass = "aspect-[16/10] w-full rounded-md object-cover object-top";
 ---
 
-<div class="rounded-lg border border-ink/10 bg-paper p-7">
-	<div class="flex flex-wrap gap-2">
+<article class="overflow-hidden rounded-lg border border-ink/10 bg-paper" data-case-study>
+	{
+		cover && (
+			<div class="relative">
+				<Image
+					src={cover.after}
+					alt={cover.afterAlt}
+					widths={shotWidths}
+					sizes={shotSizes}
+					class="aspect-[16/10] w-full object-cover object-top"
+				/>
+				<p class="absolute bottom-3 left-3 rounded-md bg-ink px-3 py-1.5 text-sm font-semibold text-paper">
+					{study!.headlineStat}
+				</p>
+			</div>
+		)
+	}
+
+	<div class="p-7">
+		<div class="flex flex-wrap gap-2">
+			{
+				entry.tags.map((tag) => (
+					<span class="rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">
+						{tag}
+					</span>
+				))
+			}
+		</div>
+
+		<Heading class="mt-3 font-head text-2xl font-semibold text-ink">{entry.name}</Heading>
+		<p class="mt-2 text-sm leading-relaxed text-ink/70">{entry.description}</p>
+
+		<a
+			href={entry.url}
+			target="_blank"
+			rel="noopener noreferrer"
+			class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-accent hover:underline"
+		>
+			Visit site →
+		</a>
+
 		{
-			entry.tags.map((tag) => (
-				<span class="rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">{tag}</span>
-			))
+			study && (
+				<details class="mt-5 border-t border-ink/10 pt-4">
+					<summary class="cursor-pointer text-sm font-semibold text-accent hover:underline">
+						View case study
+					</summary>
+
+					{hasTabs && (
+						<div
+							class="mt-4 flex flex-wrap items-center gap-2"
+							role="group"
+							aria-label={`Page shown for ${entry.name}`}
+						>
+							{pages.map((page, index) => (
+								<button
+									type="button"
+									data-tab-btn={String(index)}
+									aria-pressed={index === 0 ? "true" : "false"}
+									class="view-btn"
+								>
+									{page.label}
+								</button>
+							))}
+						</div>
+					)}
+
+					<div
+						class="mt-3 flex items-center gap-2"
+						role="group"
+						aria-label={`Screenshot view for ${entry.name}`}
+					>
+						<button type="button" data-view-btn="before" aria-pressed="false" class="view-btn">
+							Before
+						</button>
+						<button type="button" data-view-btn="after" aria-pressed="true" class="view-btn">
+							After
+						</button>
+					</div>
+
+					<div class="mt-3">
+						{pages.map((page, index) => (
+							<Fragment>
+								<Image
+									src={page.before}
+									alt={page.beforeAlt}
+									data-page={String(index)}
+									data-view="before"
+									hidden
+									loading="lazy"
+									widths={shotWidths}
+									sizes={shotSizes}
+									class={shotClass}
+								/>
+								<Image
+									src={page.after}
+									alt={page.afterAlt}
+									data-page={String(index)}
+									data-view="after"
+									hidden={index !== 0}
+									loading="lazy"
+									widths={shotWidths}
+									sizes={shotSizes}
+									class={shotClass}
+								/>
+							</Fragment>
+						))}
+					</div>
+
+					<table class="mt-5 w-full text-left text-sm">
+						<caption class="sr-only">Results for {entry.name}</caption>
+						<thead>
+							<tr class="text-xs uppercase tracking-wide text-muted">
+								<th scope="col" class="pb-2 font-semibold">
+									Metric
+								</th>
+								<th scope="col" class="pb-2 font-semibold">
+									Before
+								</th>
+								<th scope="col" class="pb-2 font-semibold">
+									After
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							{study.metrics.map((metric) => (
+								<tr class="border-t border-ink/10">
+									<th scope="row" class="py-2 pr-3 font-medium text-ink/80">
+										{metric.label}
+									</th>
+									<td class="py-2 pr-3 tabular-nums text-ink/70">{metric.before}</td>
+									<td class="py-2 font-semibold tabular-nums text-ink">{metric.after}</td>
+								</tr>
+							))}
+						</tbody>
+					</table>
+
+					<p class="mt-4 text-sm leading-relaxed text-ink/75">{study.summary}</p>
+				</details>
+			)
 		}
 	</div>
-	<Heading class="mt-3 font-head text-2xl font-semibold text-ink">{entry.name}</Heading>
-	<p class="mt-2 text-sm leading-relaxed text-ink/70">{entry.description}</p>
-	<a
-		href={entry.url}
-		target="_blank"
-		rel="noopener noreferrer"
-		class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-accent hover:underline"
-	>
-		Visit site →
-	</a>
-</div>
+</article>
+
+<style>
+	/* Pressed state is driven off aria-pressed, so the ARIA attribute is the
+	   single source of truth and the script never juggles classes. */
+	.view-btn {
+		border-radius: 0.375rem;
+		border: 1px solid color-mix(in srgb, var(--color-ink) 20%, transparent);
+		padding: 0.25rem 0.75rem;
+		font-size: 0.75rem;
+		font-weight: 600;
+		color: var(--color-ink);
+		background: transparent;
+		cursor: pointer;
+	}
+
+	.view-btn[aria-pressed="true"] {
+		background: var(--color-primary);
+		border-color: var(--color-primary);
+		color: var(--color-paper);
+	}
+
+	.view-btn:focus-visible {
+		outline: 2px solid var(--color-accent);
+		outline-offset: 2px;
+	}
+
+	/* Tailwind's preflight sets `img { display: block }`, which overrides the
+	   browser default for [hidden]. Restore it so a shot can be hidden with the
+	   attribute — which also drops it from the accessibility tree. */
+	img[hidden] {
+		display: none;
+	}
+</style>
+
+<script>
+	document.querySelectorAll<HTMLElement>("[data-case-study]").forEach((card) => {
+		const tabButtons = card.querySelectorAll<HTMLButtonElement>("[data-tab-btn]");
+		const viewButtons = card.querySelectorAll<HTMLButtonElement>("[data-view-btn]");
+		const shots = card.querySelectorAll<HTMLImageElement>("[data-page]");
+		if (!viewButtons.length) return;
+
+		let activePage = "0";
+		let activeView = "after";
+
+		function sync() {
+			tabButtons.forEach((button) => {
+				button.setAttribute("aria-pressed", String(button.dataset.tabBtn === activePage));
+			});
+			viewButtons.forEach((button) => {
+				button.setAttribute("aria-pressed", String(button.dataset.viewBtn === activeView));
+			});
+			shots.forEach((shot) => {
+				shot.hidden = !(shot.dataset.page === activePage && shot.dataset.view === activeView);
+			});
+		}
+
+		tabButtons.forEach((button) => {
+			button.addEventListener("click", () => {
+				activePage = button.dataset.tabBtn ?? "0";
+				sync();
+			});
+		});
+
+		viewButtons.forEach((button) => {
+			button.addEventListener("click", () => {
+				activeView = button.dataset.viewBtn ?? "after";
+				sync();
+			});
+		});
+	});
+</script>
