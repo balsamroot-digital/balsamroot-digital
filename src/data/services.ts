@@ -45,7 +45,7 @@ export const services: Service[] = [
 	{
 		slug: 'seo',
 		name: 'SEO',
-		summary: 'Local search visibility for Google and Maps.',
+		summary: 'Local search visibility for Google, Apple and Maps.',
 		priceLabel: 'Quoted per project',
 		details: [
 			'Metadata and schema markup',

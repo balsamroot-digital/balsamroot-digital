@@ -3,9 +3,9 @@ export const siteConfig = {
 	shortName: 'Balsamroot Digital',
 	legalName: 'Kettle Collective LLC',
 	tagline:
-		'Websites for Gorge wineries and breweries, built and maintained by someone local.',
+		'Websites for Gorge businesses, built and maintained by someone local.',
 	description:
-		'Website builds, redesigns, and ongoing maintenance for wineries, breweries, and hospitality businesses in the Columbia Gorge.',
+		'Website builds, redesigns, Search Engine Optimization (SEO) and ongoing maintenance for businesses in the Columbia Gorge.',
 	email: 'colter@balsamrootdigital.com',
 	location: 'Hood River, OR',
 	region: 'Columbia Gorge',

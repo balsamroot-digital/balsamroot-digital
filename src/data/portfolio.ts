@@ -82,13 +82,6 @@ export type PortfolioEntry = {
 // With only one page in `pages`, the tabs are skipped automatically.
 
 export const portfolio: PortfolioEntry[] = [
-	// {
-	// 	slug: 'ridge-of-wonders-wine',
-	// 	name: 'Ridge of Wonders Wine',
-	// 	url: 'https://ridgeofwonderswine.com',
-	// 	description: 'Website design and build for a Columbia Gorge winery.',
-	// 	tags: ['New Build'],
-	// },
 	{
 		slug: 'crush-cider-cafe',
 		name: 'Crush Cider Cafe',
