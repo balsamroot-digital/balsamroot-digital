@@ -4,6 +4,7 @@ import Hero from "../components/Hero.astro";
 import ServiceCard from "../components/ServiceCard.astro";
 import PortfolioCard from "../components/PortfolioCard.astro";
 import TrustSection from "../components/TrustSection.astro";
+import BuilderNote from "../components/BuilderNote.astro";
 import CTASection from "../components/CTASection.astro";
 import { services } from "../data/services";
 import { portfolio } from "../data/portfolio";
@@ -26,6 +27,8 @@ const featuredServices = services.slice(0, 4);
 
 	<TrustSection />
 
+	<BuilderNote />
+
 	<section class="mx-auto max-w-6xl px-6 py-20">
 		<div class="mb-8 flex items-end justify-between">
 			<h2 class="font-head text-2xl font-semibold text-ink sm:text-3xl">Recent work</h2>
@@ -37,7 +40,7 @@ const featuredServices = services.slice(0, 4);
 	</section>
 
 	<CTASection
-		heading="Have a site that needs a rebuild — or no site at all?"
+		heading="Have a site that needs a rebuild? Or no site at all?"
 		body="Tell me about your business and I'll tell you honestly what it needs."
 	/>
 </Layout>

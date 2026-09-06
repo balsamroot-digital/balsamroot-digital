@@ -10,7 +10,9 @@ Shared, tool-agnostic instructions (dev server, Astro docs) live in `AGENTS.md`,
 
 Marketing/portfolio website for **Balsamroot Digital**, a DBA operating under the parent LLC **Kettle Collective LLC**. Keep the name in one config/constants file, not hardcoded across components, so it's an easy change if it's ever renamed.
 
-Solo web developer business based in the Columbia Gorge (Hood River, OR area), targeting wineries and breweries as clients for website builds, redesigns, and ongoing maintenance/SEO. This site's whole job is to convert a skeptical, non-technical small business owner into a client. See PROJECT-BRIEF.md in this repo for full context, sitemap, and pricing detail — treat that file as the source of truth for content and structure.
+Solo web developer business based in the Columbia Gorge (Hood River, OR area), targeting **local small businesses in general** for website builds, redesigns, and ongoing maintenance/SEO. Wineries and breweries were the original focus and remain welcome, but the site should not read as winery/brewery-only: shops, restaurants, trades, services, and any other local business should see themselves in the copy. Keep examples concrete and varied rather than naming one industry throughout.
+
+A specific audience worth speaking to directly: owners already paying a monthly subscription to a site builder (Squarespace, Wix, GoDaddy) who are frustrated by the cost, the limits, or both. Name that situation plainly somewhere on the site and offer to help, in the same "reach out anyway" spirit as the pricing note. This site's whole job is to convert a skeptical, non-technical small business owner into a client. See PROJECT-BRIEF.md in this repo for full context, sitemap, and pricing detail — treat that file as the source of truth for content and structure.
 
 ## Tech stack
 
@@ -57,7 +59,7 @@ Each portfolio entry should prove results, not just show a screenshot. Prototype
 
 The whole site — every page, every button label, every error message — should sound **professional but friendly, like a helpful neighbor, not a vendor.** This is a deliberate, consistent voice, not just a rule for the copy on one page. Concretely:
 
-- **Warm, not stiff**: write like you're talking to someone across a tasting room counter, not filing a proposal. Contractions are fine ("I'll," "you're," "let's"). Avoid corporate throat-clearing ("We pride ourselves on delivering...").
+- **Warm, not stiff**: write like you're talking to someone across their own counter, not filing a proposal. Contractions are fine ("I'll," "you're," "let's"). Avoid corporate throat-clearing ("We pride ourselves on delivering...").
 - **Helpful first, salesy never**: default to offering to help before asking for anything. If pricing or scope might not fit someone, say so and invite them to reach out anyway rather than letting them quietly bounce off the page. (See the pricing page's "reach out anyway" note as the reference example for this tone.)
 - **Plain language over jargon**: explain technical things (SEO, headless CMS, hosting) the way you'd explain them to a business owner who's never heard the term, not the way you'd explain them to another developer.
 - **Confident, not hedgy** — say what you do and how it helps, without over-qualifying every sentence. Friendly doesn't mean unsure of yourself.
@@ -68,7 +70,7 @@ The whole site — every page, every button label, every error message — shoul
 ## Design direction
 
 - Avoid generic AI-site defaults: no cream-background/serif/terracotta combo, no dark-mode-plus-neon-gradient SaaS look, no hairline-rule broadsheet layout unless deliberately chosen.
-- Should feel like it belongs next to a winery or brewery's own branding — warm, professional, locally-rooted. Pull visual/color cues from the Gorge (basalt, river, wildflower, orchard) rather than defaulting to generic corporate blue.
+- Should feel like it belongs next to a local business's own branding, warm, professional, locally-rooted. Pull visual/color cues from the Gorge (basalt, river, wildflower, orchard) rather than defaulting to generic corporate blue.
 - Copy should sound like a real person talking to a business owner, not marketing-speak. Plain, direct, confident — not salesy. See "Voice and tone" above for the full standard this applies across the whole site.
 
 ## Non-goals for v1

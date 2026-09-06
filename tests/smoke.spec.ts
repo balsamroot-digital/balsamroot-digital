@@ -1,12 +1,16 @@
 import { expect, test } from '@playwright/test'
+import { siteConfig } from '../src/data/site-config'
 
 test('homepage loads with the correct title and headline', async ({ page }) => {
 	await page.goto('/')
 
 	await expect(page).toHaveTitle(/Balsamroot Digital/)
 
+	// Assert against the config rather than a copied string, so rewording the
+	// tagline doesn't break the test. What's being checked is that the hero is
+	// actually wired to site-config, not the specific words.
 	const heading = page.getByRole('heading', { level: 1 })
-	await expect(heading).toHaveText(/Websites for Gorge wineries/)
+	await expect(heading).toHaveText(siteConfig.tagline)
 })
 
 test('the hero photo appears on the homepage', async ({ page }) => {

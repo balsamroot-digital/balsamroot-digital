@@ -7,7 +7,7 @@ import { services, maintenanceTiers, addOns } from "../data/services";
 import headerImage from "../assets/brandon-desjarlais-8ZytzmKizII-unsplash.jpg";
 ---
 
-<Layout title="Services" description="New builds, redesigns, maintenance plans, and SEO for Columbia Gorge wineries and breweries.">
+<Layout title="Services" description="New builds, redesigns, maintenance plans, and SEO for local businesses in the Columbia Gorge.">
 	<section class="mx-auto max-w-6xl px-6 pt-16 pb-12">
 		<div class="lg:grid lg:grid-cols-[1.4fr_1fr] lg:items-center lg:gap-14">
 			<div>
@@ -56,16 +56,24 @@ import headerImage from "../assets/brandon-desjarlais-8ZytzmKizII-unsplash.jpg";
 		<div class="mx-auto max-w-6xl px-6 py-20">
 			<h2 class="font-head text-3xl font-semibold text-ink">Maintenance plans</h2>
 			<p class="mt-3 max-w-2xl text-ink/75">
-				This is the option most clients land on after launch: hosting, security, and
+				This is the option most businesses I work with land on after launch: hosting, security, and
 				small updates handled monthly so you never have to think about the technical
 				side again.
 			</p>
-			<div class="mt-10 grid gap-6 sm:grid-cols-3">
+			<p class="mt-3 max-w-2xl text-ink/75">
+				Pick the plan based on how often your details change, not on how big your business
+				is. You can move up or down at any time, and anything beyond your plan's included
+				time is billed at the same $40/hr as one-off work. No surprise invoices.
+			</p>
+			<div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
 				{
 					maintenanceTiers.map((tier) => (
 						<div class="flex flex-col rounded-lg border border-ink/10 bg-paper p-7">
 							<h3 class="font-head text-xl font-semibold text-ink">{tier.name}</h3>
 							<p class="mt-1 text-2xl font-semibold text-accent">{tier.priceLabel}</p>
+							<p class="mt-2 text-xs font-semibold uppercase tracking-wide text-muted">
+								{tier.bestFor}
+							</p>
 							<p class="mt-3 text-sm leading-relaxed text-ink/70">{tier.description}</p>
 							<ul class="mt-5 space-y-2 text-sm text-ink/70">
 								{tier.features.map((feature) => (

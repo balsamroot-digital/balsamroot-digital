@@ -10,6 +10,11 @@ import { siteConfig } from "../data/site-config";
 			Tell me a bit about your business and what you need. I read every message myself
 			and I'll get back to you within a day or two.
 		</p>
+		<p class="mt-4 text-lg leading-relaxed text-ink/75">
+			Not sure what you need yet, or whether this is the right time? Send a note anyway.
+			I'm glad to talk it through and point you in the right direction, even if that
+			turns out not to be me.
+		</p>
 
 		<form
 			id="contact-form"
@@ -81,7 +86,12 @@ import { siteConfig } from "../data/site-config";
 			</button>
 		</form>
 
-		<p id="contact-status" class="mt-5 hidden text-sm" role="status"></p>
+		<p
+			id="contact-status"
+			class="mt-5 hidden text-sm"
+			role="status"
+			data-email={siteConfig.email}
+		></p>
 
 		<div class="mt-14 border-t border-ink/10 pt-8">
 			<p class="text-sm font-semibold text-ink">Prefer to reach out directly?</p>
@@ -177,10 +187,14 @@ import { siteConfig } from "../data/site-config";
 			form.reset();
 			updateCounter();
 			form.hidden = true;
-			showStatus("Thanks — your message is sent. I'll get back to you within a day or two.");
+			showStatus("Thanks! Your message is sent. I'll get back to you within a day or two.");
 		} catch {
 			submitButton.disabled = false;
-			showStatus("Something went wrong sending that. Please email me directly instead.", true);
+			const email = status?.dataset.email ?? "";
+			showStatus(
+				`Something went wrong on my end. You can email me directly at ${email} and I'll get right back to you.`,
+				true,
+			);
 		}
 	});
 </script>
