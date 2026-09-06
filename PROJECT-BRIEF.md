@@ -2,7 +2,7 @@
 
 ## What this is
 
-A professional marketing/portfolio site for Balsamroot Digital, a DBA operating under the parent LLC Kettle Collective LLC. The site's job is to convince a winery or brewery owner in the Columbia Gorge that hiring a local, responsive web developer is a better call than an agency quote or a DIY builder.
+A professional marketing/portfolio site for Balsamroot Digital, a DBA operating under the parent LLC Kettle Collective LLC. The site's job is to convince a local business owner in the Columbia Gorge that hiring a local, responsive web developer is a better call than an agency quote or a DIY builder.
 
 Business structure: Balsamroot Digital is a DBA of Kettle Collective LLC — still a one-person operation, so nothing on the site should imply a team or an agency.
 
@@ -16,13 +16,13 @@ Business structure: Balsamroot Digital is a DBA of Kettle Collective LLC — sti
 
 ## Target audience
 
-Small business owners (wineries, breweries, cideries, and similar hospitality/agritourism businesses) in the Columbia Gorge. Not technical. Care about: looking legitimate online, being findable on Google/Maps, low hassle, and a fair price. Skeptical of anything that sounds like a big agency sales pitch.
+Local small business owners in the Columbia Gorge: shops, restaurants, trades, services, and hospitality alike. Wineries and breweries were the original focus and are still very welcome, but the site should not read as serving only them. Not technical. Care about: looking legitimate online, being findable on Google/Maps, low hassle, and a fair price. Skeptical of anything that sounds like a big agency sales pitch.
 
 ## Sitemap / pages
 
 ### 1. Home
 
-- Hero: who you are, what you do, who you do it for (one clear sentence — "Websites for Gorge wineries and breweries, built and maintained by someone local.")
+- Hero: who you are, what you do, who you do it for (one clear sentence, currently "Websites for Gorge businesses, built and maintained by someone local.")
 - Quick services overview (3–4 cards, links down to full Services page)
 - Portfolio highlight — Ridge of Wonders + Crush Cider, with a screenshot/link to each
 - Short trust-building bit: local, responsive, honest pricing
@@ -32,15 +32,19 @@ Small business owners (wineries, breweries, cideries, and similar hospitality/ag
 
 Lay out real offerings so prospects can self-qualify. Suggested structure and starting-point pricing (adjust as you like before publishing — these are meant to be _directionally_ accurate, not locked in stone):
 
-- **New Website Build** — custom site from scratch. Starting at $1,200 (flat fee), scoped per project.
-- **Website Redesign** — modernizing/rebuilding an existing site (this is what you're doing for Crush Cider). Starting at $800.
-- **Maintenance Plans** (recurring, monthly) — this is the page that should sell hardest, since it's your best recurring revenue:
-    - _Basic — $50/mo_: hosting & security monitoring, minor text/photo updates, 1 hour included
-    - _Standard — $100/mo_: everything in Basic + more frequent updates, small feature additions, faster turnaround
-    - _Growth — custom quote_: e-commerce/online ordering or booking system support included
-- **One-off Updates** — hourly, $35–50/hr, 1-hour minimum, for businesses without a maintenance plan.
-- **SEO** — call this out specifically since you're already doing it for Crush Cider. Local SEO for Google/Maps visibility, metadata, schema markup, Search Console setup.
-- **Add-ons** (list as available, price case-by-case): domain/hosting management, online ordering/e-commerce setup, tasting-room booking/reservation systems, copywriting support.
+- **Starter Site** — a single page with hours, contact details, a map, and Google Business Profile setup. $450 flat. This is the door-opener for a business that currently has a Facebook page and nothing else.
+- **Website Redesign** — modernizing/rebuilding an existing site (this is what you're doing for Crush Cider). Starting at $650.
+- **New Website Build** — custom multi-page site from scratch. Starting at $900, scoped per project.
+- **Maintenance Plans** (recurring, monthly) — this is the page that should sell hardest, since it's your best recurring revenue. Four tiers so people can self-select on how often their details change:
+    - _Essentials — $10/mo_: hosting, SSL, security patches, uptime monitoring, monthly backups. Changes billed hourly. Nets roughly $108/yr, so treat it as a relationship-starter that grows into a paid tier, not as revenue.
+    - _Basic — $25/mo_: everything in Essentials + up to 2 small updates/month, 30 minutes of changes included, reply within one business day
+    - _Standard — $50/mo_: everything in Basic + weekly updates (hours, events, menus, specials), 1 hour included, same-day weekday replies
+    - _Growth — custom quote_: everything in Standard + e-commerce/online ordering and booking system support, hours scoped to fit
+- **One-off Updates** — $40/hr, 30-minute minimum, for businesses without a maintenance plan.
+- **SEO** — call this out specifically since you're already doing it for Crush Cider. Starting at $250. Local SEO for Google/Apple Maps visibility, page titles and descriptions, structured business details, Search Console setup.
+- **Add-ons** (list as available, price case-by-case): domain/hosting management, online ordering/e-commerce setup, booking/reservation systems, copywriting support.
+
+Pricing principle: keep project work at or above roughly $40/hr of real effort, and win entry-level customers with the Starter Site and the $10/mo tier rather than by discounting builds. Low anchors are hard to raise later.
 
 ### 3. Portfolio
 
@@ -71,7 +75,7 @@ Lay out real offerings so prospects can self-qualify. Suggested structure and st
 
 - Professional but warm — this isn't a SaaS product, it's a local craftsperson's business. Avoid generic "tech startup" look (dark mode + neon gradient, or the cream/serif/terracotta combo that's become an AI-generated-site cliché).
 - Pull visual cues from the Gorge itself: basalt, water, wildflower color, or the "Digital" branding direction you landed on — lean into that identity rather than defaulting to generic blue-and-white corporate styling.
-- Should feel at home sitting next to a winery or brewery's own site aesthetically, since that's the audience judging it.
+- Should feel at home sitting next to a local business's own site aesthetically, since that's the audience judging it.
 
 ## Out of scope for v1
 
