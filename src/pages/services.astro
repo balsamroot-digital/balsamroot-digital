@@ -3,7 +3,7 @@ import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import ServiceCard from "../components/ServiceCard.astro";
 import CTASection from "../components/CTASection.astro";
-import { services, maintenanceTiers, addOns } from "../data/services";
+import { services, maintenanceTiers, addOns, hourlyRate } from "../data/services";
 import headerImage from "../assets/brandon-desjarlais-8ZytzmKizII-unsplash.jpg";
 ---
 
@@ -63,7 +63,7 @@ import headerImage from "../assets/brandon-desjarlais-8ZytzmKizII-unsplash.jpg";
 			<p class="mt-3 max-w-2xl text-ink/75">
 				Pick the plan based on how often your details change, not on how big your business
 				is. You can move up or down at any time, and anything beyond your plan's included
-				time is billed at the same $40/hr as one-off work. No surprise invoices.
+				time is billed at the same ${hourlyRate}/hr as one-off work. No surprise invoices.
 			</p>
 			<div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
 				{
