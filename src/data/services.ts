@@ -81,7 +81,7 @@ export const maintenanceTiers: MaintenanceTier[] = [
 			'Hosting and SSL certificate',
 			'Security patches and uptime monitoring',
 			'Monthly backups',
-			'Changes billed at the hourly rate',
+			'Changes billed at $40/hr',
 		],
 	},
 	{
