@@ -7,8 +7,12 @@ export const siteConfig = {
 	description:
 		'Website builds, redesigns, Search Engine Optimization (SEO) and ongoing maintenance for businesses in the Columbia Gorge.',
 	email: 'colter@balsamrootdigital.com',
-	location: 'Hood River, OR',
+	location: 'White Salmon, WA',
 	region: 'Columbia Gorge',
 	linkedin: 'https://www.linkedin.com/in/colter-garrison/',
 	github: 'https://github.com/Colter-Garrison',
+	// Bump this whenever the favicon or touch icon art changes. Browsers cache
+	// icons far more stubbornly than other assets, so returning visitors keep
+	// the old one until the URL itself changes.
+	iconVersion: '3',
 } as const

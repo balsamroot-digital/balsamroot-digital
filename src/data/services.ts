@@ -15,6 +15,11 @@ export type MaintenanceTier = {
 	features: string[]
 }
 
+/** Single source of truth for the hourly rate. Change this one number and it
+ * updates the One-off Updates card, the Essentials plan, and the maintenance
+ * plans intro on the services page. */
+export const hourlyRate = 40
+
 export const services: Service[] = [
 	{
 		slug: 'starter-site',
@@ -66,7 +71,7 @@ export const services: Service[] = [
 		name: 'One-off Updates',
 		summary:
 			'For businesses without a maintenance plan that need a quick change.',
-		priceLabel: '$40/hr, 30-minute minimum',
+		priceLabel: `$${hourlyRate}/hr, 30-minute minimum`,
 	},
 ]
 
@@ -81,7 +86,7 @@ export const maintenanceTiers: MaintenanceTier[] = [
 			'Hosting and SSL certificate',
 			'Security patches and uptime monitoring',
 			'Monthly backups',
-			'Changes billed at $40/hr',
+			`Changes billed at $${hourlyRate}/hr`,
 		],
 	},
 	{

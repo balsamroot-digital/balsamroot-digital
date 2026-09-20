@@ -10,7 +10,7 @@ Shared, tool-agnostic instructions (dev server, Astro docs) live in `AGENTS.md`,
 
 Marketing/portfolio website for **Balsamroot Digital**, a DBA operating under the parent LLC **Kettle Collective LLC**. Keep the name in one config/constants file, not hardcoded across components, so it's an easy change if it's ever renamed.
 
-Solo web developer business based in the Columbia Gorge (Hood River, OR area), targeting **local small businesses in general** for website builds, redesigns, and ongoing maintenance/SEO. Wineries and breweries were the original focus and remain welcome, but the site should not read as winery/brewery-only: shops, restaurants, trades, services, and any other local business should see themselves in the copy. Keep examples concrete and varied rather than naming one industry throughout.
+Solo web developer business based in the Columbia Gorge (Hood River, OR area), targeting **local small businesses in general** for website builds, redesigns, and ongoing maintenance/SEO. Tagline: "Web services for Gorge businesses." Wineries and breweries were the original focus and remain welcome, but the site should not read as winery/brewery-only: shops, restaurants, trades, services, and any other local business should see themselves in the copy. Keep examples concrete and varied rather than naming one industry throughout.
 
 A specific audience worth speaking to directly: owners already paying a monthly subscription to a site builder (Squarespace, Wix, GoDaddy) who are frustrated by the cost, the limits, or both. Name that situation plainly somewhere on the site and offer to help, in the same "reach out anyway" spirit as the pricing note. This site's whole job is to convert a skeptical, non-technical small business owner into a client. See PROJECT-BRIEF.md in this repo for full context, sitemap, and pricing detail — treat that file as the source of truth for content and structure.
 
@@ -30,9 +30,9 @@ A specific audience worth speaking to directly: owners already paying a monthly 
 ## Pages
 
 1. **Home** (`/`) — hero, services overview (cards linking to Services), portfolio highlights, short trust section, CTA to Contact
-2. **Services** (`/services`) — full breakdown: New Builds, Redesigns, Maintenance Plans (tiered), One-off Updates, SEO, Add-ons. Pull from PROJECT-BRIEF.md for current pricing structure.
-3. **Portfolio** (`/portfolio`) — Crush Cider Cafe, with it's description + live link. Structure this as a list so adding a second and third client later is trivial. See "Portfolio case study card" below for the specific component pattern to use here.
-4. **About** (`/about`) — short, human bio
+2. **Services** (`/services`) — full breakdown: New Builds, Redesigns, Maintenance Plans (tiered), One-off Updates, SEO, Add-ons. Pull from PROJECT-BRIEF.md for current pricing structure. Include a short, low-key note after the core offerings about custom apps and contract engineering (see "Secondary offerings" below) — do not give it equal visual weight to the web services; this is a secondary mention, not a peer offering.
+3. **Portfolio** (`/portfolio`) — Ridge of Wonders Wine and Crush Cider Cafe, each with description + live link. Structure this as a list so adding a third client later is trivial. See "Portfolio case study card" below for the specific component pattern to use here.
+4. **About** (`/about`) — short, human bio. Can include one brief line mentioning custom apps and contract engineering as things also offered (see "Secondary offerings" below), kept casual and not a dedicated section.
 5. **Contact** (`/contact`) — contact form (or mailto fallback), email, LinkedIn link
 
 ## Key content facts (don't invent alternatives to these)
@@ -54,6 +54,20 @@ Each portfolio entry should prove results, not just show a screenshot. Prototype
     - One short sentence describing what was actually done (e.g. "Added local business schema, rewrote page titles and descriptions, set up Search Console tracking")
 - Use real before/after screenshots captured at the same crop/zoom so the toggle swap doesn't jump around visually.
 - Data for each case study (before/after image paths, headline stat, metrics table rows, description sentence) should live in `src/data/portfolio.ts` alongside the rest of the portfolio entries — not hardcoded per-page.
+
+## Secondary offerings: custom apps + contract engineering (not peer services)
+
+Two more things are available beyond the core web/local-business work, but neither should compete with it for attention. The site's whole positioning depends on the focused local-business identity, so both of these exist as information for someone who asks or is curious, not as menu items pushing for equal billing.
+
+1. **Custom app development.** Apple Developer account is set up. Custom apps are built case by case, with pricing quoted per project based on scope, not a fixed price list.
+2. **Contract software engineering.** Available to join existing teams on a contract basis (separate from building a client a website or app outright). This is Colter working within someone else's team/codebase, not a Balsamroot Digital deliverable in the usual sense.
+
+How to surface both, without either becoming a distraction:
+
+- **No dedicated nav item, no homepage mention, no portfolio placement.** Keep those pages 100% focused on the web/local-business pitch.
+- **Services page**: one short paragraph after the core service list covering both in a couple of sentences, e.g. "I also build custom apps, quoted case by case based on scope, and I'm available for contract software engineering work with other teams. If either sounds like what you need, reach out and we'll talk through it." Keep it to one paragraph total for both, don't give them a heading each.
+- **About page**: optionally, one casual line mentioning both as things also offered. No dedicated section or heading.
+- Tone should never imply an open intake process for either. These are invitations to ask, not menu items.
 
 ## Voice and tone
 
