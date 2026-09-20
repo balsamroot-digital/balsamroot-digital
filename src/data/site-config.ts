@@ -11,4 +11,8 @@ export const siteConfig = {
 	region: 'Columbia Gorge',
 	linkedin: 'https://www.linkedin.com/in/colter-garrison/',
 	github: 'https://github.com/Colter-Garrison',
+	// Bump this whenever the favicon or touch icon art changes. Browsers cache
+	// icons far more stubbornly than other assets, so returning visitors keep
+	// the old one until the URL itself changes.
+	iconVersion: '3',
 } as const
