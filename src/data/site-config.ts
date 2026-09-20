@@ -7,7 +7,7 @@ export const siteConfig = {
 	description:
 		'Website builds, redesigns, Search Engine Optimization (SEO) and ongoing maintenance for businesses in the Columbia Gorge.',
 	email: 'colter@balsamrootdigital.com',
-	location: 'Hood River, OR',
+	location: 'White Salmon, WA',
 	region: 'Columbia Gorge',
 	linkedin: 'https://www.linkedin.com/in/colter-garrison/',
 	github: 'https://github.com/Colter-Garrison',
