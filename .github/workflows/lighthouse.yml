@@ -26,6 +26,8 @@ jobs:
 
             - name: Build site
               run: npm run build
+              env:
+                  TINY_GROVE_GITHUB_TOKEN: ${{ secrets.TINY_GROVE_GITHUB_TOKEN }}
 
             # Mobile is Lighthouse's default — no preset is set at all.
             - name: Run Lighthouse (mobile)
