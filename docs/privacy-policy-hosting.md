@@ -4,7 +4,7 @@ Both app stores require a publicly reachable privacy policy URL before submissio
 
 **The site:** Astro, on GitHub, deployed by Netlify, at `balsamrootdigital.com`.
 
-**The URL:** `balsamrootdigital.com/tiny-grove/privacy`
+**The URL:** `https://balsamrootdigital.com/tiny-grove/privacy/`. Keep the trailing slash: without it, Netlify redirects to this address, and the store listings should point straight at the page.
 
 ---
 
