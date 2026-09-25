@@ -1,0 +1,58 @@
+---
+// Unlinked on purpose: reachable by URL for the app stores, but not in the
+// nav, footer, or anywhere else on the site. Don't add noindex either.
+// The text comes from the Tiny Grove app repo at build time; see
+// src/data/tiny-grove-privacy.ts before changing anything here.
+import Layout from "../../layouts/Layout.astro";
+import { siteConfig } from "../../data/site-config";
+import { loadPrivacyPolicy, tinyGrove } from "../../data/tiny-grove-privacy";
+
+const policy = await loadPrivacyPolicy(siteConfig.email);
+const mailto = `mailto:${siteConfig.email}`;
+---
+
+<Layout
+	title={`${tinyGrove.name} privacy policy`}
+	description={policy
+		? `The privacy policy for ${tinyGrove.name}, a medication tracker by ${siteConfig.name}. ${policy.promise}`
+		: `The privacy policy for ${tinyGrove.name}, a medication tracker by ${siteConfig.name}.`}
+>
+	<article class="mx-auto max-w-prose px-6 py-16 sm:py-24">
+		<p class="text-sm font-semibold uppercase tracking-wide text-primary">{tinyGrove.name}</p>
+		<h1 class="mt-2 font-head text-4xl font-semibold text-ink sm:text-5xl">
+			{policy ? policy.title : "Privacy policy"}
+		</h1>
+
+		{
+			policy ? (
+				<>
+					<p class="mt-4 text-sm text-muted">{policy.updated}</p>
+					<p class="mt-8 text-lg leading-relaxed text-ink/80">{policy.intro}</p>
+
+					{policy.sections.map((section) => (
+						<section class="mt-10">
+							<h2 class="font-head text-2xl font-semibold text-ink">{section.heading}</h2>
+							<p class="mt-3 text-lg leading-relaxed text-ink/80">{section.body}</p>
+						</section>
+					))}
+
+					<section class="mt-10">
+						<h2 class="font-head text-2xl font-semibold text-ink">{policy.contact.heading}</h2>
+						<p class="mt-3 text-lg leading-relaxed">
+							<a href={mailto} class="font-semibold text-accent underline underline-offset-2 hover:no-underline">
+								{policy.contact.body}
+							</a>
+						</p>
+					</section>
+				</>
+			) : (
+				<p class="mt-8 text-lg leading-relaxed text-ink/80">
+					This build couldn't load the policy text (no TINY_GROVE_GITHUB_TOKEN). Questions can go to{" "}
+					<a href={mailto} class="font-semibold text-accent underline underline-offset-2 hover:no-underline">
+						{siteConfig.email}
+					</a>.
+				</p>
+			)
+		}
+	</article>
+</Layout>
