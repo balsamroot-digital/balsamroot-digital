@@ -34,15 +34,15 @@ With both in place, editing the policy in the app repo publishes to the website 
 
 ---
 
-## Routing: reachable, not discoverable
+## Routing: linked from the app's page, nowhere else
 
-**No navigation link.** The page must not appear in the site's header, footer, nav menu, or anywhere else a visitor browsing `balsamrootdigital.com` would encounter it. The only way to reach it is by knowing the URL, which the app stores and the app itself provide.
+**One link, from `/tiny-grove`.** The app's landing page links to the policy, because the privacy story is the app's main selling point and someone reading about it should be one tap from the proof. (This changed on 2026-09-30; before the landing page existed the policy was unlinked everywhere.)
 
-In Astro's file-based routing, a file at `src/pages/tiny-grove/privacy.astro` serves at that path and nowhere else. Nothing links to it unless something links to it, so this is mostly about **not** adding it to whatever nav component the site uses.
+**No other link.** The page must not appear in the site's header, footer, nav menu, or anywhere else a visitor browsing `balsamrootdigital.com` for web services would encounter it. `tests/tiny-grove-privacy.spec.ts` checks both halves of this.
 
 **Do not password-protect it, gate it, or put it behind any form.** Both stores require the URL to be publicly accessible and not editable by users. A protected page fails review.
 
-**Do not add `noindex`.** It's permitted, but it works against the point. Someone who wants to verify the privacy claims should be able to find them, and a privacy policy that's deliberately hard to find quietly contradicts the thing it exists to prove. Leaving it unlinked already means search engines are unlikely to find it on their own; that's sufficient.
+**Do not add `noindex`.** It's permitted, but it works against the point. Someone who wants to verify the privacy claims should be able to find them, and a privacy policy that's deliberately hard to find quietly contradicts the thing it exists to prove. Keeping it off the nav and footer is enough separation from the rest of the site.
 
 ---
 
@@ -65,7 +65,7 @@ Styling should match the rest of the site. It doesn't need to look like the app.
 - Open it in a private window, signed out, and confirm it loads.
 - Confirm it's on the custom domain, not a `*.netlify.app` or branch-deploy address. This URL sits in two store listings for years; it should be on a domain that survives changing hosts.
 - Confirm the text matches the app's version word for word, including the privacy promise sentence (`privacy.promise`), which is also quoted in the store listings and must not vary anywhere.
-- Confirm nothing on the site links to it.
+- Confirm only `/tiny-grove` links to it.
 - **Test the loop end to end:** change a word in `privacyPolicy` in the app repo, push to main, and confirm the site rebuilds on its own and shows the change. If it doesn't, the wiring is decorative. Change the word back afterward.
 
 ---

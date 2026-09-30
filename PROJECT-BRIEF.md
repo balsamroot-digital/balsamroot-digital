@@ -54,7 +54,7 @@ Pricing principle: keep project work at or above roughly $40/hr of real effort, 
 
 ### 4. About
 
-- Short bio: local to Hood River/the Gorge, why that matters for this work, background as a developer
+- Short bio: local to White Salmon/the Gorge, why that matters for this work, background as a developer
 - Keep it human and short — this page exists to build trust, not to be a resume
 
 ### 5. Contact

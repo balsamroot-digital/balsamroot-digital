@@ -10,7 +10,7 @@ Shared, tool-agnostic instructions (dev server, Astro docs) live in `AGENTS.md`,
 
 Marketing/portfolio website for **Balsamroot Digital**, a DBA operating under the parent LLC **Kettle Collective LLC**. Keep the name in one config/constants file, not hardcoded across components, so it's an easy change if it's ever renamed.
 
-Solo web developer business based in the Columbia Gorge (Hood River, OR area), targeting **local small businesses in general** for website builds, redesigns, and ongoing maintenance/SEO. Tagline: "Web services for Gorge businesses." Wineries and breweries were the original focus and remain welcome, but the site should not read as winery/brewery-only: shops, restaurants, trades, services, and any other local business should see themselves in the copy. Keep examples concrete and varied rather than naming one industry throughout.
+Solo web developer business based in the Columbia Gorge (White Salmon, WA), targeting **local small businesses in general** for website builds, redesigns, and ongoing maintenance/SEO. Tagline: "Web services for Gorge businesses." Wineries and breweries were the original focus and remain welcome, but the site should not read as winery/brewery-only: shops, restaurants, trades, services, and any other local business should see themselves in the copy. Keep examples concrete and varied rather than naming one industry throughout.
 
 A specific audience worth speaking to directly: owners already paying a monthly subscription to a site builder (Squarespace, Wix, GoDaddy) who are frustrated by the cost, the limits, or both. Name that situation plainly somewhere on the site and offer to help, in the same "reach out anyway" spirit as the pricing note. This site's whole job is to convert a skeptical, non-technical small business owner into a client. See PROJECT-BRIEF.md in this repo for full context, sitemap, and pricing detail — treat that file as the source of truth for content and structure.
 
@@ -41,7 +41,7 @@ A specific audience worth speaking to directly: owners already paying a monthly 
 - LinkedIn: https://www.linkedin.com/in/colter-garrison/
 - GitHub: https://github.com/Colter-Garrison
 - Business structure: sole proprietor, solo operator (no team page needed — don't imply an agency)
-- Geographic focus: Columbia Gorge (Hood River, OR area) — this is a differentiator, keep it visible, don't write generic "we serve businesses everywhere" copy
+- Geographic focus: Columbia Gorge (White Salmon, WA). The town lives in `siteConfig.location`; use that rather than typing it into copy — this is a differentiator, keep it visible, don't write generic "we serve businesses everywhere" copy
 
 ## Portfolio case study card
 
@@ -64,7 +64,9 @@ Two more things are available beyond the core web/local-business work, but neith
 
 How to surface both, without either becoming a distraction:
 
-- **No dedicated nav item, no homepage mention, no portfolio placement.** Keep those pages 100% focused on the web/local-business pitch.
+- **No dedicated nav item, no homepage mention.** Keep those 100% focused on the web/local-business pitch.
+- **Portfolio**: apps get their own "Apps" section *below* the websites (currently just Tiny Grove, Colter's own app). Websites stay first; the homepage's "Recent work" stays websites-only.
+- **Tiny Grove** has its own landing page at `/tiny-grove` (also its store marketing/support URL), styled in the app's own palette and font inside the site's nav and footer. About and Services mention it by name in their custom-apps line. Its privacy policy at `/tiny-grove/privacy` is linked from that page only; see `docs/privacy-policy-hosting.md`.
 - **Services page**: one short paragraph after the core service list covering both in a couple of sentences, e.g. "I also build custom apps, quoted case by case based on scope, and I'm available for contract software engineering work with other teams. If either sounds like what you need, reach out and we'll talk through it." Keep it to one paragraph total for both, don't give them a heading each.
 - **About page**: optionally, one casual line mentioning both as things also offered. No dedicated section or heading.
 - Tone should never imply an open intake process for either. These are invitations to ask, not menu items.

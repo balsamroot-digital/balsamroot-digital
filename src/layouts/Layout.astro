@@ -3,13 +3,22 @@ import "../styles/global.css";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 import { siteConfig } from "../data/site-config";
+import { getImage } from "astro:assets";
+import type { ImageMetadata } from "astro";
 
 type Props = {
 	title: string;
 	description?: string;
+	/** Preview image for links shared on social media and in messages. Should
+	 * be roughly 1.91:1. Pages without one share as text only. */
+	image?: ImageMetadata;
 };
 
-const { title, description = siteConfig.description } = Astro.props;
+const { title, description = siteConfig.description, image } = Astro.props;
+const fullTitle = `${title} · ${siteConfig.name}`;
+const shareImage = image
+	? new URL((await getImage({ src: image, format: "jpg" })).src, Astro.site)
+	: undefined;
 ---
 
 <html lang="en">
@@ -21,7 +30,14 @@ const { title, description = siteConfig.description } = Astro.props;
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={description} />
-		<title>{title} · {siteConfig.name}</title>
+		<title>{fullTitle}</title>
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content={siteConfig.name} />
+		<meta property="og:title" content={fullTitle} />
+		<meta property="og:description" content={description} />
+		{Astro.site && <meta property="og:url" content={new URL(Astro.url.pathname, Astro.site)} />}
+		{shareImage && <meta property="og:image" content={shareImage} />}
+		<meta name="twitter:card" content={shareImage ? "summary_large_image" : "summary"} />
 	</head>
 	<body class="flex min-h-screen flex-col bg-paper font-body text-ink">
 		<Nav />

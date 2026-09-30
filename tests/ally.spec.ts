@@ -7,6 +7,7 @@ const ROUTES = [
 	'/portfolio',
 	'/about',
 	'/contact',
+	'/tiny-grove',
 	'/tiny-grove/privacy',
 ]
 
