@@ -1,4 +1,6 @@
 import type { ImageMetadata } from 'astro'
+import { tinyGroveApp } from './tiny-grove'
+import tinyGroveCover from '../assets/tiny-grove/feature-graphic.png'
 
 export type CaseStudyPage = {
 	/** Tab label. Keep it to one word so tabs don't wrap on mobile. */
@@ -35,9 +37,16 @@ export type CaseStudy = {
 export type PortfolioEntry = {
 	slug: string
 	name: string
+	/** A live site, or a path on this site (starting with '/') for work that
+	 * has its own page here. Internal links open in the same tab. */
 	url: string
+	/** Defaults to 'Visit site'. */
+	linkLabel?: string
 	description: string
 	tags: string[]
+	/** Optional image for a card without a case study. Shown at 16:10, cropped
+	 * from the center. */
+	cover?: { image: ImageMetadata; alt: string }
 	/** Optional. Entries without one render as a plain card. */
 	caseStudy?: CaseStudy
 }
@@ -89,5 +98,24 @@ export const portfolio: PortfolioEntry[] = [
 		description:
 			'Monthly maintenance and ongoing local SEO for a Gorge cidery.',
 		tags: ['Standard Maintenance Plan', 'SEO'],
+	},
+]
+
+// Apps get their own section on the portfolio page, below the websites. They
+// stay off the homepage, which is only about websites for local businesses.
+export const apps: PortfolioEntry[] = [
+	{
+		slug: 'tiny-grove',
+		name: tinyGroveApp.name,
+		url: tinyGroveApp.path,
+		linkLabel: 'See the app',
+		description: tinyGroveApp.launched
+			? 'A gentle medication tracker for iPhone and Android, designed and built start to finish. Every dose grows a watercolor garden, and your records stay on your phone.'
+			: 'A gentle medication tracker for iPhone and Android, designed and built start to finish and coming soon to both app stores. Every dose grows a watercolor garden, and your records stay on your phone.',
+		tags: ['iPhone', 'Android', 'Design and development'],
+		cover: {
+			image: tinyGroveCover,
+			alt: 'The Tiny Grove app icon and name over a watercolor garden',
+		},
 	},
 ]

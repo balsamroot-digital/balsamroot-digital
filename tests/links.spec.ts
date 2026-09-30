@@ -1,6 +1,13 @@
 import { expect, test } from '@playwright/test'
 
-const ROUTES = ['/', '/services', '/portfolio', '/about', '/contact']
+const ROUTES = [
+	'/',
+	'/services',
+	'/portfolio',
+	'/about',
+	'/contact',
+	'/tiny-grove',
+]
 
 test('no broken internal links anywhere on the site', async ({
 	page,

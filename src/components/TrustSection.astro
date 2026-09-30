@@ -1,8 +1,10 @@
 ---
+import { siteConfig } from "../data/site-config";
+
 const points = [
 	{
 		title: "Local",
-		body: "Based in Hood River, I know what makes a Gorge business different from a national chain, because I live here.",
+		body: `Based in ${siteConfig.location}, I know what makes a Gorge business different from a national chain, because I live here.`,
 	},
 	{
 		title: "Responsive",
@@ -20,6 +22,7 @@ const points = [
 		{
 			points.map((point) => (
 				<div>
+					<span aria-hidden="true" class="mb-3 block h-1 w-8 rounded-full bg-petal" />
 					<h3 class="font-head text-lg font-semibold text-ink">{point.title}</h3>
 					<p class="mt-2 text-sm leading-relaxed text-ink/70">{point.body}</p>
 				</div>

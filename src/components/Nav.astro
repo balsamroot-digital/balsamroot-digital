@@ -1,5 +1,8 @@
 ---
+import { Image } from "astro:assets";
 import { siteConfig } from "../data/site-config";
+// Same art as the favicon. The name is real text beside it, so alt is empty.
+import icon from "../assets/brand/icon.png";
 
 const links = [
 	{ href: "/", label: "Home" },
@@ -12,7 +15,15 @@ const links = [
 
 <header class="border-b border-ink/10">
 	<nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
-		<a href="/" class="font-head text-xl font-semibold text-ink">
+		<a href="/" class="flex items-center gap-3 font-head text-xl font-semibold text-ink">
+			<Image
+				src={icon}
+				alt=""
+				widths={[40, 80]}
+				sizes="2.5rem"
+				loading="eager"
+				class="h-10 w-10 object-contain"
+			/>
 			{siteConfig.shortName}
 		</a>
 

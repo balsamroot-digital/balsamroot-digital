@@ -9,9 +9,29 @@
 	--color-primary: #3f5344;
 	--color-accent: #96571d;
 	--color-muted: #6b6a5e;
+	/* Balsamroot petal yellow, sampled from the logo art. Decoration only
+	   (rules, ticks, flourishes): it's far too light to carry text on paper. */
+	--color-petal: #f0bd71;
+
+	/* Tiny Grove's own palette, used only on /tiny-grove. Copied from
+	   src/theme/tokens.ts in the app repo; keep them in step if the app's
+	   palette changes. */
+	--color-grove-canvas: #f1f2ea;
+	--color-grove-card: #ffffff;
+	--color-grove-mist: #e7ebdf;
+	--color-grove-ink: #26332a;
+	--color-grove-soft: #4f5b4e;
+	--color-grove-muted: #64705f;
+	--color-grove-moss: #4f6b4e;
+	--color-grove-moss-dark: #425b41;
+	--color-grove-moss-tint: #dce5d3;
+	--color-grove-plum-text: #6e5470;
+	--color-grove-plum-tint: #e6dde6;
 
 	--font-head: "Newsreader", serif;
 	--font-body: "Work Sans Variable", sans-serif;
+	/* Only loaded on /tiny-grove, which imports the font itself. */
+	--font-grove: "Nunito Variable", sans-serif;
 }
 
 body {

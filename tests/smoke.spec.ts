@@ -27,7 +27,14 @@ test('the hero photo appears on the homepage', async ({ page }) => {
 })
 
 test('every internal page responds successfully', async ({ request }) => {
-	for (const path of ['/', '/services', '/portfolio', '/about', '/contact']) {
+	for (const path of [
+		'/',
+		'/services',
+		'/portfolio',
+		'/about',
+		'/contact',
+		'/tiny-grove',
+	]) {
 		const response = await request.get(path)
 		expect(response.status(), `${path} should be reachable`).toBe(200)
 	}

@@ -1,0 +1,265 @@
+---
+// The Tiny Grove landing page, and the app's marketing and support URL in
+// both store listings. Laid out after the press kit (2b hero, 2d body).
+//
+// It wears the app's look (Nunito, moss, plum, the garden paintings) inside
+// the site's own nav and footer, so it reads as "an app by Balsamroot
+// Digital". The font is imported here, not in global.css, so no other page
+// downloads it.
+//
+// Like the privacy page, this page must load nothing from third parties.
+import "@fontsource-variable/nunito";
+import { Image } from "astro:assets";
+import Layout from "../../layouts/Layout.astro";
+import { siteConfig } from "../../data/site-config";
+import { loadPrivacyPolicy, tinyGrove } from "../../data/tiny-grove-privacy";
+import { tinyGroveApp as app, screenshots, featureGroups, faqs } from "../../data/tiny-grove";
+import garden from "../../assets/tiny-grove/garden.png";
+import icon from "../../assets/tiny-grove/icon.png";
+import featureGraphic from "../../assets/tiny-grove/feature-graphic.png";
+
+// Only `promise` is used here. It's quoted from the app's own strings so it
+// matches the app, the privacy policy, and the store listings word for word.
+const policy = await loadPrivacyPolicy(siteConfig.email);
+const mailto = `mailto:${siteConfig.email}`;
+const availability = app.launched ? "App Store and Google Play" : "Coming soon to iPhone and Android";
+
+const storeLinks = [
+	{ label: "Download on the App Store", href: app.stores.appStore },
+	{ label: "Get it on Google Play", href: app.stores.googlePlay },
+].filter((link): link is { label: string; href: string } => Boolean(link.href));
+---
+
+<Layout
+	title={`${app.name}, ${app.subtitle.toLowerCase()}`}
+	description={`${app.name} is a calm medication tracker for iPhone and Android. Every dose you take helps a watercolor garden grow. No account, no ads, no tracking.`}
+	image={featureGraphic}
+>
+	<div class="bg-grove-canvas font-grove text-grove-ink">
+		<section>
+			<div class="relative">
+				<Image
+					src={garden}
+					alt=""
+					widths={[640, 960, 1205]}
+					sizes="100vw"
+					loading="eager"
+					fetchpriority="high"
+					class="h-64 w-full object-cover object-[50%_55%] sm:h-96 lg:h-[32rem]"
+				/>
+				<div class="absolute inset-0 bg-linear-to-b from-transparent from-35% to-grove-canvas to-95%"></div>
+			</div>
+
+			<div class="relative mx-auto -mt-20 max-w-3xl px-6 text-center sm:-mt-32">
+				<Image
+					src={icon}
+					alt=""
+					widths={[88, 176]}
+					sizes="5.5rem"
+					loading="eager"
+					class="mx-auto h-20 w-20 rounded-[22%] shadow-lg shadow-grove-moss-dark/25 sm:h-22 sm:w-22"
+				/>
+				<h1 class="mt-5 text-5xl font-extrabold tracking-tight sm:text-7xl">{app.name}</h1>
+				<p class="mt-3 text-xl font-bold text-grove-moss sm:text-2xl">{app.subtitle}</p>
+				<p class="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-grove-soft">
+					{app.tagline} Every dose helps it bloom, and nothing you do ever makes it wilt.
+				</p>
+
+				{
+					storeLinks.length ? (
+						<div class="mt-8 flex flex-wrap justify-center gap-3">
+							{storeLinks.map((link) => (
+								<a
+									href={link.href}
+									class="rounded-full bg-grove-moss px-6 py-3 text-sm font-bold text-white hover:bg-grove-moss-dark"
+								>
+									{link.label}
+								</a>
+							))}
+						</div>
+					) : (
+						<p class="mt-8 inline-block rounded-full bg-grove-plum-tint px-5 py-2 text-sm font-bold text-grove-plum-text">
+							{availability}
+						</p>
+					)
+				}
+			</div>
+		</section>
+
+		<section class="mx-auto max-w-5xl px-6 py-16 sm:py-24">
+			<div class="grid grid-cols-1 gap-10 lg:grid-cols-[1.6fr_1fr] lg:gap-14">
+				<div>
+					<h2 class="text-sm font-bold uppercase tracking-widest text-grove-muted">About</h2>
+					<p class="mt-4 text-lg leading-relaxed">{app.about[0]}</p>
+					<p class="mt-4 text-lg leading-relaxed text-grove-soft">{app.about[1]}</p>
+
+					<ul class="mt-8 space-y-4">
+						{
+							app.highlights.map((item) => (
+								<li class="flex gap-3 text-lg leading-snug">
+									<span aria-hidden="true" class="mt-2 h-2.5 w-2.5 shrink-0 rounded-sm bg-grove-moss" />
+									{item}
+								</li>
+							))
+						}
+					</ul>
+				</div>
+
+				<aside aria-labelledby="facts-heading" class="self-start rounded-3xl bg-grove-card p-8">
+					<h2 id="facts-heading" class="sr-only">Quick facts</h2>
+					<dl class="space-y-5">
+						<div>
+							<dt class="text-sm font-semibold text-grove-muted">Developer</dt>
+							<dd class="mt-1 text-base font-semibold sm:text-lg">
+								<a href="/" class="hover:text-grove-moss hover:underline">{siteConfig.name}</a>
+							</dd>
+						</div>
+						<div>
+							<dt class="text-sm font-semibold text-grove-muted">Platforms</dt>
+							<dd class="mt-1 text-base font-semibold sm:text-lg">{app.platforms}</dd>
+						</div>
+						<div>
+							<dt class="text-sm font-semibold text-grove-muted">Price</dt>
+							<dd class="mt-1 text-base font-semibold sm:text-lg">{app.price}</dd>
+						</div>
+						<div>
+							<dt class="text-sm font-semibold text-grove-muted">Account</dt>
+							<dd class="mt-1 text-base font-semibold sm:text-lg">None needed</dd>
+						</div>
+						<div>
+							<dt class="text-sm font-semibold text-grove-muted">Availability</dt>
+							<dd class="mt-1 text-base font-semibold sm:text-lg">{availability}</dd>
+						</div>
+						<div>
+							<dt class="text-sm font-semibold text-grove-muted">Questions and press</dt>
+							<dd class="mt-1 text-base font-semibold wrap-anywhere sm:text-lg">
+								<a href={mailto} class="text-grove-moss underline underline-offset-4 hover:no-underline">
+									{siteConfig.email}
+								</a>
+							</dd>
+						</div>
+					</dl>
+				</aside>
+			</div>
+		</section>
+
+		<section aria-labelledby="screens-heading" class="pb-16 sm:pb-24">
+			<h2 id="screens-heading" class="mx-auto max-w-5xl px-6 text-3xl font-extrabold sm:text-4xl">
+				A look inside
+			</h2>
+			{/* Focusable so keyboard users can scroll it with the arrow keys. */}
+			<div
+				role="region"
+				aria-label="Screenshots, scrolls sideways"
+				tabindex="0"
+				class="shots mt-8 snap-x snap-mandatory overflow-x-auto focus-visible:outline-2 focus-visible:outline-grove-moss"
+			>
+				<ul class="flex w-max gap-4 pb-4">
+					{
+						screenshots.map((shot) => (
+							<li class="w-60 shrink-0 snap-start lg:w-52">
+								<Image
+									src={shot.image}
+									alt={shot.alt}
+									widths={[240, 416, 480]}
+									sizes="(min-width: 1024px) 13rem, 15rem"
+									loading="lazy"
+									class="h-auto w-full rounded-2xl shadow-md shadow-grove-ink/10"
+								/>
+							</li>
+						))
+					}
+				</ul>
+			</div>
+		</section>
+
+		<section aria-labelledby="features-heading" class="mx-auto max-w-5xl px-6 pb-16 sm:pb-24">
+			<h2 id="features-heading" class="text-3xl font-extrabold sm:text-4xl">What it does</h2>
+			<div class="mt-8 grid gap-6 md:grid-cols-2">
+				{
+					featureGroups.map((group) => (
+						<div class="rounded-3xl bg-grove-card p-8">
+							<h3 class="text-xl font-extrabold">{group.heading}</h3>
+							<ul class="mt-4 space-y-3">
+								{group.items.map((item) => (
+									<li class="flex gap-3 leading-snug text-grove-soft">
+										<span aria-hidden="true" class="mt-1.5 h-2 w-2 shrink-0 rounded-sm bg-grove-moss" />
+										{item}
+									</li>
+								))}
+							</ul>
+						</div>
+					))
+				}
+			</div>
+		</section>
+
+		<section aria-labelledby="privacy-heading" class="bg-grove-mist">
+			<div class="mx-auto max-w-3xl px-6 py-16 text-center sm:py-20">
+				<p class="text-sm font-bold uppercase tracking-widest text-grove-soft">Privacy</p>
+				<h2 id="privacy-heading" class="mt-3 text-3xl font-extrabold text-balance sm:text-4xl">
+					No account, no server, no ads, no tracking.
+				</h2>
+				{policy && <p class="mt-5 text-lg leading-relaxed text-grove-soft">{policy.promise}</p>}
+				<a
+					href={tinyGrove.path}
+					class="mt-6 inline-block font-bold text-grove-moss underline underline-offset-4 hover:no-underline"
+				>
+					Read the privacy policy
+				</a>
+			</div>
+		</section>
+
+		<section id="support" aria-labelledby="support-heading" class="mx-auto max-w-5xl px-6 py-16 sm:py-24">
+			<div class="max-w-3xl">
+				<h2 id="support-heading" class="text-3xl font-extrabold sm:text-4xl">Questions</h2>
+				<p class="mt-4 text-lg leading-relaxed text-grove-soft">
+					Stuck on something, or found something that isn't working right? Email me at{" "}
+					<a href={mailto} class="font-bold text-grove-moss underline underline-offset-4 hover:no-underline">
+						{siteConfig.email}</a
+					>. I build {app.name} myself, so you'll hear back from the person who made it.
+				</p>
+
+				<div class="mt-8 divide-y divide-grove-ink/10 border-y border-grove-ink/10">
+					{
+						faqs.map((faq) => (
+							<details class="group py-5">
+								<summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-lg font-bold [&::-webkit-details-marker]:hidden">
+									{faq.question}
+									<span
+										aria-hidden="true"
+										class="text-2xl leading-none font-semibold text-grove-moss transition-transform group-open:rotate-45 motion-reduce:transition-none"
+									>
+										+
+									</span>
+								</summary>
+								<p class="mt-3 leading-relaxed text-grove-soft">{faq.answer}</p>
+							</details>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<div class="border-t border-grove-ink/10">
+			<div class="mx-auto flex max-w-5xl flex-col gap-3 px-6 py-8 text-sm sm:flex-row sm:items-center sm:justify-between sm:gap-8">
+				<p class="max-w-xl text-grove-muted">{app.disclaimer}</p>
+				<p class="shrink-0 text-grove-soft">
+					Made by <a href="/" class="font-bold text-grove-moss hover:underline">{siteConfig.name}</a> in the {siteConfig.region}.
+				</p>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	/* The row runs edge to edge with a small gutter at each end, and snapping
+	   keeps that gutter when it scrolls. */
+	.shots {
+		--gutter: 1.5rem;
+		scroll-padding-inline: var(--gutter);
+	}
+	.shots ul {
+		padding-inline: var(--gutter);
+	}
+</style>

@@ -1,14 +1,29 @@
 ---
+import { Image } from "astro:assets";
 import { siteConfig } from "../data/site-config";
+// The Submark on its own watercolor paper, cut to the outer ring so it sits on
+// the dark footer as a filled circle rather than a square. Its lettering keeps
+// its original dark color, since the paper disc sits behind it.
+import mark from "../assets/brand/submark-disc.png";
 
 const year = new Date().getFullYear();
 ---
 
-<footer class="bg-ink text-paper/90">
+<footer class="border-t-2 border-petal bg-ink text-paper/90">
 	<div class="mx-auto flex max-w-6xl flex-col gap-6 px-6 py-10 sm:flex-row sm:items-center sm:justify-between">
-		<div>
-			<p class="font-head text-lg font-semibold text-paper">{siteConfig.name}</p>
-			<p class="mt-1 text-sm text-paper/70">{siteConfig.location} · {siteConfig.region}</p>
+		<div class="flex items-center gap-5">
+			{/* The name sits right beside it as text, so the art is decorative. */}
+			<Image
+				src={mark}
+				alt=""
+				widths={[80, 96, 192]}
+				sizes="(min-width: 640px) 6rem, 4rem"
+				class="h-16 w-16 shrink-0 object-contain sm:h-24 sm:w-24"
+			/>
+			<div>
+				<p class="font-head text-lg font-semibold text-paper">{siteConfig.name}</p>
+				<p class="mt-1 text-sm text-paper/70">{siteConfig.location} · {siteConfig.region}</p>
+			</div>
 		</div>
 
 		<div class="flex flex-wrap gap-x-6 gap-y-2 text-sm">
@@ -18,6 +33,6 @@ const year = new Date().getFullYear();
 		</div>
 	</div>
 	<div class="border-t border-paper/10 px-6 py-4 text-center text-xs text-paper/60">
-		&copy; {year} {siteConfig.name}.
+		&copy; {year} {siteConfig.name}, a DBA of {siteConfig.legalName}. All rights reserved.
 	</div>
 </footer>

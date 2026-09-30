@@ -5,8 +5,7 @@ import type { PortfolioEntry } from "../data/portfolio";
 type Props = {
 	entry: PortfolioEntry;
 	/** Heading level for the entry name. Defaults to 3, for use under an h2
-	 * section heading. The portfolio page passes 2, where cards sit directly
-	 * under the h1. */
+	 * section heading. Pass 2 where a card sits directly under an h1. */
 	headingLevel?: 2 | 3;
 };
 
@@ -17,6 +16,9 @@ const study = entry.caseStudy;
 const pages = study?.pages ?? [];
 const cover = pages[0];
 const hasTabs = pages.length > 1;
+
+const isInternal = entry.url.startsWith("/");
+const linkLabel = entry.linkLabel ?? "Visit site";
 
 const shotWidths = [420, 720, 1040];
 const shotSizes = "(min-width: 640px) 45vw, 100vw";
@@ -41,6 +43,18 @@ const shotClass = "aspect-[16/10] w-full rounded-md object-cover object-top";
 		)
 	}
 
+	{
+		!cover && entry.cover && (
+			<Image
+				src={entry.cover.image}
+				alt={entry.cover.alt}
+				widths={shotWidths}
+				sizes={shotSizes}
+				class="aspect-[16/10] w-full object-cover"
+			/>
+		)
+	}
+
 	<div class="p-7">
 		<div class="flex flex-wrap gap-2">
 			{
@@ -57,11 +71,11 @@ const shotClass = "aspect-[16/10] w-full rounded-md object-cover object-top";
 
 		<a
 			href={entry.url}
-			target="_blank"
-			rel="noopener noreferrer"
+			target={isInternal ? undefined : "_blank"}
+			rel={isInternal ? undefined : "noopener noreferrer"}
 			class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-accent hover:underline"
 		>
-			Visit site →
+			{linkLabel} →
 		</a>
 
 		{

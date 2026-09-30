@@ -10,8 +10,9 @@ import { TINY_GROVE_GITHUB_TOKEN } from 'astro:env/server'
  * whenever it changes. To edit the policy, edit en.json in the app repo and
  * nothing else.
  *
- * The page is deliberately unlinked: it's reachable by URL (the app stores
- * need that) but shouldn't show up in the nav, footer, or anywhere else.
+ * The page is linked from the Tiny Grove landing page (/tiny-grove) and
+ * nowhere else: not the nav, the footer, or the rest of the site. The landing
+ * page also quotes `promise` from here, so it can never drift from the app.
  */
 
 export const tinyGrove = {
@@ -121,11 +122,20 @@ function mayBuildWithoutPolicy(): boolean {
 	return import.meta.env.DEV || process.env.GITHUB_ACTIONS === 'true'
 }
 
+// Both /tiny-grove and /tiny-grove/privacy need the policy, so one build
+// shares a single fetch between them.
+let pending: Promise<PrivacyPolicy | null> | undefined
+
 /**
  * Loads the policy at build time, or returns null when this build is allowed
  * to go without it (see `mayBuildWithoutPolicy`).
  */
-export async function loadPrivacyPolicy(email: string): Promise<PrivacyPolicy | null> {
+export function loadPrivacyPolicy(email: string): Promise<PrivacyPolicy | null> {
+	pending ??= fetchPolicy(email)
+	return pending
+}
+
+async function fetchPolicy(email: string): Promise<PrivacyPolicy | null> {
 	if (!TINY_GROVE_GITHUB_TOKEN) {
 		if (mayBuildWithoutPolicy()) {
 			console.warn(
