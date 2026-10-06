@@ -14,5 +14,5 @@ export const siteConfig = {
 	// Bump this whenever the favicon or touch icon art changes. Browsers cache
 	// icons far more stubbornly than other assets, so returning visitors keep
 	// the old one until the URL itself changes.
-	iconVersion: '3',
+	iconVersion: '4',
 } as const
