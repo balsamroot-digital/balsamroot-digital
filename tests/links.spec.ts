@@ -50,4 +50,14 @@ test('no broken internal links anywhere on the site', async ({
 	expect(broken, `Broken internal links:\n${broken.join('\n')}`).toHaveLength(
 		0,
 	)
+
+	// Netlify 301s "/services" to "/services/", and search engines report every
+	// link that lands on a redirect, so page links must use the final address.
+	const redirecting = [...found.keys()].filter(
+		(href) => !href.endsWith('/') && !/\.[a-z0-9]+$/i.test(href),
+	)
+	expect(
+		redirecting,
+		`Internal links missing a trailing slash:\n${redirecting.join('\n')}`,
+	).toHaveLength(0)
 })

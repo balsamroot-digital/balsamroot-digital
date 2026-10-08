@@ -46,7 +46,7 @@ const stores = {
 
 export const tinyGroveApp = {
 	name: 'Tiny Grove',
-	path: '/tiny-grove',
+	path: '/tiny-grove/',
 	subtitle: 'A gentle medication tracker',
 	tagline: 'Take your meds. Watch a garden grow.',
 	stores,

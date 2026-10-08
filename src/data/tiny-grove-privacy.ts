@@ -17,7 +17,7 @@ import { TINY_GROVE_GITHUB_TOKEN } from 'astro:env/server'
 
 export const tinyGrove = {
 	name: 'Tiny Grove',
-	path: '/tiny-grove/privacy',
+	path: '/tiny-grove/privacy/',
 	repo: 'balsamroot-digital/tiny-grove',
 	branch: 'main',
 	stringsFile: 'src/i18n/en.json',
