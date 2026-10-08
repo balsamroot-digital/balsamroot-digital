@@ -2,9 +2,9 @@
 
 Both app stores require a publicly reachable privacy policy URL before submission. This is the last blocker on the Play listing that's within our control.
 
-**The site:** Astro, on GitHub, deployed by Netlify, at `balsamrootdigital.com`.
+**The site:** Astro, on GitHub, deployed by Netlify, at `www.balsamrootdigital.com` (the bare domain redirects there).
 
-**The URL:** `https://balsamrootdigital.com/tiny-grove/privacy/`. Keep the trailing slash: without it, Netlify redirects to this address, and the store listings should point straight at the page.
+**The URL:** `https://www.balsamrootdigital.com/tiny-grove/privacy/`. Keep the `www` and the trailing slash: without either, Netlify redirects to this address, and the store listings should point straight at the page.
 
 ---
 

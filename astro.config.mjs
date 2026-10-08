@@ -2,11 +2,14 @@
 import { defineConfig, envField } from 'astro/config';
 
 import tailwindcss from '@tailwindcss/vite';
+import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
   // Used to build absolute URLs, e.g. for social preview images.
-  site: 'https://balsamrootdigital.com',
+  site: 'https://www.balsamrootdigital.com',
+  // Lists every page for search engines at /sitemap-index.xml (see robots.txt).
+  integrations: [sitemap()],
   env: {
     schema: {
       // Read-only access to the private Tiny Grove repo, so the build can pull

@@ -16,6 +16,9 @@ type Props = {
 
 const { title, description = siteConfig.description, image } = Astro.props;
 const fullTitle = `${title} · ${siteConfig.name}`;
+// The one address search engines should index for this page: `site` from astro.config,
+// https, with the trailing slash Netlify serves. Other spellings redirect here.
+const canonicalUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site) : undefined;
 const shareImage = image
 	? new URL((await getImage({ src: image, format: "jpg" })).src, Astro.site)
 	: undefined;
@@ -35,7 +38,8 @@ const shareImage = image
 		<meta property="og:site_name" content={siteConfig.name} />
 		<meta property="og:title" content={fullTitle} />
 		<meta property="og:description" content={description} />
-		{Astro.site && <meta property="og:url" content={new URL(Astro.url.pathname, Astro.site)} />}
+		{canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+		{canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
 		{shareImage && <meta property="og:image" content={shareImage} />}
 		<meta name="twitter:card" content={shareImage ? "summary_large_image" : "summary"} />
 	</head>
